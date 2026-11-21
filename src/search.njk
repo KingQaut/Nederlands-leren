@@ -1,0 +1,6 @@
+---
+pagination: { data: library.langs, size: 1, alias: x }
+permalink: "/assets/search-{{ x.lang }}.json"
+eleventyExcludeFromCollections: true
+---
+{{ library.search[x.lang] | json | safe }}

@@ -1,6 +1,63 @@
-// The home page sentence ("I speak [..] Dutch and I want to learn [..]"),
-// its results, and the search in "browse everything".
-// Without JavaScript the sentence stays hidden and the full list is shown.
+// Site search in the header, the "help me choose" sentence and its lists.
+// Without JavaScript every page still works: the sentence stays hidden and
+// all lists are shown in full.
+
+// ---- shared: typo-tolerant matching ------------------------------------------
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+// true when a and b differ by at most one letter (typo tolerance)
+function near(a, b) {
+  if (Math.abs(a.length - b.length) > 1) return false;
+  let i = 0, j = 0, edits = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++edits > 1) return false;
+    if (a[i] === b[j + 1] && a[i + 1] === b[j]) { i += 2; j += 2; } // swapped letters
+    else if (a.length > b.length) i++;
+    else if (b.length > a.length) j++;
+    else { i++; j++; }
+  }
+  return edits + (a.length - i) + (b.length - j) <= 1;
+}
+// every query word appears in the text, or is one typo away from one of its words
+function matches(text, tokens, words) {
+  return words.every((w) => text.includes(w) ||
+    (w.length >= 4 && tokens.some((t) => near(t, w) ||
+      (t.length > w.length && (near(t.slice(0, w.length), w) || near(t.slice(0, w.length + 1), w))))));
+}
+
+// ---- site search in the header ------------------------------------------------
+(function () {
+  const q = document.getElementById("q");
+  const hits = document.getElementById("hits");
+  const link = document.getElementById("search-index");
+  if (!q || !hits || !link) return;
+  let index = null;
+  const load = () => index || (index = fetch(link.href).then((r) => r.json()).then((items) =>
+    items.map((x) => ({ ...x, text: norm(x.t + " " + x.d), tokens: norm(x.t + " " + x.d).split(/[^a-z0-9]+/) }))
+  ).catch(() => []));
+  q.addEventListener("focus", load);
+  q.addEventListener("input", async () => {
+    const words = norm(q.value).split(/\s+/).filter(Boolean);
+    if (!words.length) { hits.hidden = true; return; }
+    const items = await load();
+    const found = items.filter((x) => matches(x.text, x.tokens, words))
+      .sort((a, b) => (a.x || 0) - (b.x || 0) || (norm(a.t).includes(words[0]) ? -1 : 1)).slice(0, 8);
+    hits.replaceChildren(...(found.length ? found.map((x) => {
+      const li = document.createElement("li"), a = document.createElement("a"), small = document.createElement("small");
+      a.href = x.u; a.textContent = `${x.i} ${x.t}`; if (x.x) a.rel = "noopener";
+      small.textContent = x.d; a.append(small); li.append(a); return li;
+    }) : [Object.assign(document.createElement("li"), { className: "none", textContent: q.dataset.empty })]));
+    hits.hidden = false;
+  });
+  q.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") { hits.hidden = true; q.blur(); }
+    if (e.key === "Enter") { const a = hits.querySelector("a"); if (a) location.href = a.href; }
+  });
+  document.addEventListener("click", (e) => { if (!e.target.closest(".search")) hits.hidden = true; });
+})();
+
+// ---- "help me choose" -----------------------------------------------------------
 (function () {
   const finder = document.getElementById("finder");
   if (!finder) return;
@@ -111,29 +168,7 @@
   const find = document.getElementById("find");
   const groups = [...document.querySelectorAll(".browse .group")];
   const none = document.getElementById("none");
-  const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
-
-  // true when a and b differ by at most one letter (typo tolerance)
-  function near(a, b) {
-    if (Math.abs(a.length - b.length) > 1) return false;
-    let i = 0, j = 0, edits = 0;
-    while (i < a.length && j < b.length) {
-      if (a[i] === b[j]) { i++; j++; continue; }
-      if (++edits > 1) return false;
-      if (a[i] === b[j + 1] && a[i + 1] === b[j]) { i += 2; j += 2; } // swapped letters
-      else if (a.length > b.length) i++;
-      else if (b.length > a.length) j++;
-      else { i++; j++; }
-    }
-    return edits + (a.length - i) + (b.length - j) <= 1;
-  }
-  const hit = (row, words) => {
-    const text = row.dataset.text;
-    const tokens = (row._t ||= text.split(/[^a-z0-9]+/));
-    return words.every((w) => text.includes(w) ||
-      (w.length >= 4 && tokens.some((t) => near(t, w) ||
-        (t.length > w.length && (near(t.slice(0, w.length), w) || near(t.slice(0, w.length + 1), w))))));
-  };
+  const hit = (row, words) => matches(row.dataset.text, (row._t ||= row.dataset.text.split(/[^a-z0-9]+/)), words);
 
   find.addEventListener("input", () => {
     const words = norm(find.value).split(/\s+/).filter(Boolean);

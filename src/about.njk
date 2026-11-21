@@ -1,13 +1,9 @@
 ---
-pagination:
-  data: library.pages
-  size: 1
-  alias: p
-permalink: "{{ p.about }}"
+pagination: { data: library.aboutPages, size: 1, alias: p }
+permalink: "{{ p.url }}"
 layout: base.njk
 eleventyComputed:
   title: "{{ site.ui[p.lang].aboutTitle }}"
-  altUrl: "{{ '/en/about/' if p.lang == 'nl' else '/over/' }}"
 ---
 <h1>{{ site.ui[p.lang].aboutTitle }}</h1>
 {% if p.lang == "nl" %}

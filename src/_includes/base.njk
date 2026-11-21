@@ -4,16 +4,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ title }} – {{ site.name }}</title>
-<meta name="description" content="{{ ui.description }}">
+<title>{% if p.url == p.home %}{{ site.name }} – {{ ui.tagline }}{% else %}{{ title }} – {{ site.name }}{% endif %}</title>
+<meta name="description" content="{{ description or ui.description }}">
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 <link rel="alternate" hreflang="{{ p.lang }}" href="{{ site.url }}{{ page.url }}">
-<link rel="alternate" hreflang="{{ 'en' if p.lang == 'nl' else 'nl' }}" href="{{ site.url }}{{ altUrl }}">
+<link rel="alternate" hreflang="{{ 'en' if p.lang == 'nl' else 'nl' }}" href="{{ site.url }}{{ p.alt }}">
 <meta property="og:title" content="{{ title }}">
-<meta property="og:description" content="{{ ui.description }}">
+<meta property="og:description" content="{{ description or ui.description }}">
 <meta property="og:site_name" content="{{ site.name }}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css">
+<link rel="search-index" href="/assets/search-{{ p.lang }}.json" id="search-index">
 <script src="/assets/site.js" defer></script>
 </head>
 <body>
@@ -23,8 +24,18 @@
       <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M5 7.5h15a6 6 0 0 1 6 6v4a6 6 0 0 1-6 6h-6l-6 4.5v-4.5H5z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M10 13.5h11M10 17.5h7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
       <span>Nederlands<b>Leren</b></span>
     </a>
-    <a class="lang" href="{{ altUrl }}" lang="{{ 'en' if p.lang == 'nl' else 'nl' }}" hreflang="{{ 'en' if p.lang == 'nl' else 'nl' }}">{{ ui.otherLang }}</a>
+    <form class="search" role="search" onsubmit="return false">
+      <input type="search" id="q" placeholder="{{ ui.siteSearchPh }}" aria-label="{{ ui.siteSearch }}" autocomplete="off" data-empty="{{ ui.noHits }}">
+      <ul id="hits" hidden></ul>
+    </form>
+    <a class="lang" href="{{ p.alt }}" lang="{{ 'en' if p.lang == 'nl' else 'nl' }}" hreflang="{{ 'en' if p.lang == 'nl' else 'nl' }}">{{ ui.otherLang }}</a>
   </div>
+  <nav class="wrap nav" aria-label="Menu">
+    {%- for s in library.sections %}
+    <a href="{{ s.url[p.lang] }}"{% if p.section and p.section.key == s.key %} aria-current="true"{% endif %}><i aria-hidden="true">{{ s.icon }}</i> {{ s.title[p.lang] }}</a>
+    {%- endfor %}
+    <a href="{{ p.choose }}"{% if page.url == p.choose %} aria-current="page"{% endif %}><i aria-hidden="true">🧭</i> {{ ui.chooseNav }}</a>
+  </nav>
 </header>
 <div class="notice" role="note"><div class="wrap"><span aria-hidden="true">ⓘ</span> {{ ui.disclaimer }} <a href="{{ p.about }}">{{ ui.moreInfo }}</a></div></div>
 <main class="wrap">
@@ -33,7 +44,8 @@
 <footer class="foot">
   <div class="wrap">
     <p>{{ ui.footer }}</p>
-    <p><a href="{{ p.about }}">{{ ui.about }}</a> · <a href="{{ altUrl }}">{{ ui.otherLang }}</a> · {{ ui.generated }}: {{ library.generated }}</p>
+    <p>{% for s in library.sections %}<a href="{{ s.url[p.lang] }}">{{ s.title[p.lang] }}</a> · {% endfor %}<a href="{{ p.choose }}">{{ ui.chooseNav }}</a></p>
+    <p><a href="{{ p.about }}">{{ ui.about }}</a> · <a href="{{ p.alt }}">{{ ui.otherLang }}</a> · {{ ui.generated }}: {{ library.generated }}</p>
   </div>
 </footer>
 </body>

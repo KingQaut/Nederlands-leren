@@ -1,0 +1,40 @@
+---
+pagination: { data: library.topicPages, size: 1, alias: p }
+permalink: "{{ p.url }}"
+layout: base.njk
+eleventyComputed:
+  title: "{{ p.topic.title[p.lang] }}"
+  description: "{{ p.topic.intro[p.lang] }}"
+---
+{%- from "row.njk" import row -%}
+{%- set ui = site.ui[p.lang] -%}
+{%- set t = p.topic -%}
+{%- set s = p.section -%}
+<nav class="crumbs"><a href="{{ p.home }}">{{ ui.home }}</a> › <a href="{{ s.url[p.lang] }}">{{ s.title[p.lang] }}</a> › {{ t.title[p.lang] }}</nav>
+<header class="banner {{ s.key }}">
+  <h1><span aria-hidden="true">{{ t.icon }}</span> {{ t.title[p.lang] }}</h1>
+  <p>{{ t.intro[p.lang] }}</p>
+</header>
+{%- if t.resources.length %}
+<ul class="rows big">
+{%- for r in t.resources %}{{ row(r, p.lang, site.labels, ui, site.repo) }}{% endfor %}
+</ul>
+{%- else %}
+<p class="hint">{{ ui.empty }}</p>
+{%- endif %}
+{%- if t.live.length %}
+<h2>{{ ui.live }}</h2>
+<p class="hint">{{ ui.liveText }}</p>
+<ul class="now">
+{%- for x in t.live %}
+  <li><a href="https://www.google.com/search?q={{ x.q | urlencode }}" rel="noopener">🔎 {{ x.t[p.lang] }}</a></li>
+{%- endfor %}
+</ul>
+{%- endif %}
+<aside class="more">
+  <h2>{{ ui.seeAlso }}: {{ s.title[p.lang] }}</h2>
+  <p>
+  {%- for o in s.topics %}{% if o.key != t.key %}<a class="chip" href="{{ o.url[p.lang] }}">{{ o.icon }} {{ o.title[p.lang] }}</a> {% endif %}{% endfor -%}
+  </p>
+  <p><a class="chip strong" href="{{ p.choose }}">🧭 {{ ui.chooseCardLink }}</a></p>
+</aside>

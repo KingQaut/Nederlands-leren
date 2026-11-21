@@ -1,0 +1,70 @@
+---
+pagination: { data: library.choosePages, size: 1, alias: p }
+permalink: "{{ p.url }}"
+layout: base.njk
+eleventyComputed:
+  title: "{{ site.ui[p.lang].chooseTitle }}"
+---
+{%- from "row.njk" import row -%}
+{%- set ui = site.ui[p.lang] -%}
+{%- set L = site.labels -%}
+<nav class="crumbs"><a href="{{ p.home }}">{{ ui.home }}</a> › {{ ui.chooseTitle }}</nav>
+<h1>🧭 {{ ui.chooseTitle }}</h1>
+<p class="lead">{{ ui.lead }}</p>
+
+<form id="finder" class="sentence" hidden data-copied="{{ ui.copied }}">
+  <span class="words">{{ ui.s1 }}</span>
+  <fieldset class="slot" data-slot="speak">
+    <legend class="sr">{{ ui.s1 }} … {{ ui.s2 }}</legend>
+    {%- for key, v in L.speak %}
+    <label class="pill"><input type="radio" name="speak" value="{{ key }}" data-levels="{{ v.levels | join(' ') }}"><span>{{ v[p.lang] }}</span></label>
+    {%- endfor %}
+    <button type="button" class="edit" hidden>✎ {{ ui.change }}</button>
+  </fieldset>
+  <span class="words">{{ ui.s2 }}</span>
+  <fieldset class="slot" data-slot="way">
+    <legend class="sr">{{ ui.s2 }} …</legend>
+    {%- for key, w in L.ways %}
+    <label class="pill"><input type="radio" name="way" value="{{ key }}"><span><i aria-hidden="true">{{ w.icon }}</i> {{ w[p.lang] }}</span></label>
+    {%- endfor %}
+    <button type="button" class="edit" hidden>✎ {{ ui.change }}</button>
+  </fieldset>
+</form>
+
+<section id="match" class="match" aria-live="polite" hidden>
+  <div id="waiting">
+    <p class="hint">{{ ui.waiting }}</p>
+    <ul class="rows">
+    {%- for r in library.quick %}{{ row(r, p.lang, L, ui, site.repo) }}{% endfor %}
+    </ul>
+  </div>
+  <div id="results" hidden>
+    <h2>{{ ui.bestFor }}</h2>
+    <p id="closest" class="hint" hidden>{{ ui.closest }}</p>
+    <ul id="res-list" class="rows big"></ul>
+    <ul class="now">
+    {%- for s in library.searchNow %}
+      <li data-way="{{ s.way }}"><a href="https://www.google.com/search?q={{ s.q | urlencode }}" rel="noopener">🔎 {{ s.t[p.lang] }}</a></li>
+    {%- endfor %}
+    </ul>
+    <p><button type="button" id="share">{{ ui.share }}</button></p>
+  </div>
+</section>
+
+<section class="browse" aria-labelledby="browse-h">
+  <h2 id="browse-h">{{ ui.browseTitle }}</h2>
+  <label class="find"><span class="sr">{{ ui.search }}</span>
+    <input type="search" id="find" placeholder="{{ ui.searchPh }}" autocomplete="off"></label>
+  {%- for key, w in L.ways %}
+  {%- set list = library.groups[key] %}
+  {%- if list.length %}
+  <details class="group" data-way="{{ key }}">
+    <summary><i aria-hidden="true">{{ w.icon }}</i> {{ w.title[p.lang] }} <span class="n">{{ list.length }}</span></summary>
+    <ul class="rows">
+    {%- for r in list %}{{ row(r, p.lang, L, ui, site.repo) }}{% endfor %}
+    </ul>
+  </details>
+  {%- endif %}
+  {%- endfor %}
+  <p id="none" class="hint" hidden>{{ ui.noResults }}</p>
+</section>

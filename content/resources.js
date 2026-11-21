@@ -3,8 +3,9 @@
 //
 // Fields
 //   name     name of the resource
+//   topics   topic keys from topics.js where it is listed (first = main topic)
 //   url      link to the provider (the source of truth)
-//   cat      start | speaking | courses | exam | literacy | work | children
+//   cat      start | speaking | courses | exam | literacy | work | children (used by the 'help me choose' page)
 //   levels   any of A0 A1 A2 B1 B2 (A0 = no Dutch at all)
 //   cost     free | paid
 //   formats  any of app website video class online conversation book exam
@@ -19,6 +20,7 @@ export const generated = "2026-11-21";
 export const resources = [
   {
     name: "Oefenen.nl",
+    topics: ["practice", "video"],
     url: "https://oefenen.nl/",
     cat: "start", levels: ["A0", "A1", "A2"], cost: "free", formats: ["website", "video"],
     langs: ["nl"], where: "online", trust: "ngo",
@@ -29,6 +31,7 @@ export const resources = [
   },
   {
     name: "Duolingo",
+    topics: ["apps"],
     url: "https://www.duolingo.com/",
     cat: "start", levels: ["A0", "A1", "A2"], cost: "free", formats: ["app"],
     langs: ["en", "ar", "tr", "uk"], where: "online", trust: "app",
@@ -39,6 +42,7 @@ export const resources = [
   },
   {
     name: "Learn Dutch (Bart de Pau)",
+    topics: ["video"],
     url: "https://www.learndutch.org/",
     cat: "start", levels: ["A0", "A1", "A2", "B1"], cost: "free", formats: ["video", "website"],
     langs: ["en"], where: "online", trust: "community",
@@ -49,6 +53,7 @@ export const resources = [
   },
   {
     name: "DutchGrammar.com",
+    topics: ["practice"],
     url: "https://www.dutchgrammar.com/",
     cat: "start", levels: ["A1", "A2", "B1", "B2"], cost: "free", formats: ["website"],
     langs: ["en"], where: "online", trust: "community",
@@ -59,6 +64,7 @@ export const resources = [
   },
   {
     name: "NT2 TaalMenu",
+    topics: ["practice"],
     url: "https://www.nt2taalmenu.nl/",
     cat: "start", levels: ["A0", "A1", "A2", "B1"], cost: "free", formats: ["website"],
     langs: ["nl"], where: "online", trust: "community",
@@ -69,6 +75,7 @@ export const resources = [
   },
   {
     name: "Bibliotheek: Taalhuis en taalcafé",
+    topics: ["talk", "library"],
     url: "https://www.bibliotheek.nl/",
     cat: "speaking", levels: ["A0", "A1", "A2", "B1"], cost: "free", formats: ["class", "conversation"],
     langs: ["nl"], where: "national", trust: "library",
@@ -79,6 +86,7 @@ export const resources = [
   },
   {
     name: "OBA, Openbare Bibliotheek Amsterdam",
+    topics: ["talk", "library"],
     url: "https://www.oba.nl/",
     cat: "speaking", levels: ["A0", "A1", "A2", "B1"], cost: "free", formats: ["class", "conversation"],
     langs: ["nl"], where: "amsterdam", address: "Oosterdokskade 143, Amsterdam", trust: "library",
@@ -89,6 +97,7 @@ export const resources = [
   },
   {
     name: "Het Begint met Taal",
+    topics: ["talk"],
     url: "https://www.hetbegintmettaal.nl/",
     cat: "speaking", levels: ["A0", "A1", "A2", "B1"], cost: "free", formats: ["conversation"],
     langs: ["nl"], where: "national", trust: "ngo",
@@ -99,6 +108,7 @@ export const resources = [
   },
   {
     name: "Staatsexamens NT2",
+    topics: ["exam"],
     url: "https://www.staatsexamensnt2.nl/",
     cat: "exam", levels: ["B1", "B2"], cost: "paid", formats: ["exam", "website"],
     langs: ["nl"], where: "national", trust: "official",
@@ -109,6 +119,7 @@ export const resources = [
   },
   {
     name: "UvA Talen",
+    topics: ["course", "onlineclass"],
     url: "https://www.uvatalen.nl/",
     cat: "courses", levels: ["A0", "A1", "A2", "B1", "B2"], cost: "paid", formats: ["class", "online"],
     langs: ["en", "nl"], where: "amsterdam", trust: "university",
@@ -119,6 +130,7 @@ export const resources = [
   },
   {
     name: "Stichting Lezen & Schrijven",
+    topics: ["literacy"],
     url: "https://www.lezenenschrijven.nl/",
     cat: "literacy", levels: ["A0", "A1"], cost: "free", formats: ["website", "class"],
     langs: ["nl"], where: "national", trust: "ngo",
@@ -129,6 +141,7 @@ export const resources = [
   },
   {
     name: "Makkelijk Lezen Plein",
+    topics: ["library", "literacy"],
     url: "https://www.makkelijklezenplein.nl/",
     cat: "literacy", levels: ["A1", "A2", "B1"], cost: "free", formats: ["book", "website"],
     langs: ["nl"], where: "national", trust: "library",
@@ -139,6 +152,7 @@ export const resources = [
   },
   {
     name: "BoekStart",
+    topics: ["kids", "library"],
     url: "https://www.boekstart.nl/",
     cat: "children", levels: ["A0", "A1", "A2"], cost: "free", formats: ["book"],
     langs: ["nl"], where: "national", trust: "library",
@@ -149,6 +163,7 @@ export const resources = [
   },
   {
     name: "Schooltv",
+    topics: ["kids", "video"],
     url: "https://schooltv.nl/",
     cat: "children", levels: ["A1", "A2", "B1"], cost: "free", formats: ["video"],
     langs: ["nl"], where: "online", trust: "official",
@@ -157,13 +172,4 @@ export const resources = [
       en: "Free short educational videos from Dutch public broadcasting. Good for learning Dutch together with your children.",
     },
   },
-];
-
-// "Search now" buttons: things that change every week (dates, times, places),
-// so the site opens a live search instead of keeping a list.
-export const searchNow = [
-  { cat: "speaking", q: "taalcafé Amsterdam", t: { nl: "Taalcafés in Amsterdam", en: "Language cafés in Amsterdam" } },
-  { cat: "speaking", q: "taalmaatje Amsterdam", t: { nl: "Taalmaatje in Amsterdam", en: "Language buddy in Amsterdam" } },
-  { cat: "courses", q: "cursus Nederlands Amsterdam", t: { nl: "Cursus Nederlands in Amsterdam", en: "Dutch course in Amsterdam" } },
-  { cat: "work", q: "Nederlands op de werkvloer cursus", t: { nl: "Nederlands voor uw werk", en: "Dutch for work" } },
 ];

@@ -8,6 +8,7 @@ export default function (cfg) {
   cfg.addFilter("host", (u) => {
     try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return u; }
   });
+  cfg.addFilter("json", (v) => JSON.stringify(v));
   // Text used by the search box: name + summary + labels, lower case, no accents.
   cfg.addFilter("searchText", (parts) =>
     parts.filter(Boolean).join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")

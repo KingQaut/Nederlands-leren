@@ -1,97 +1,45 @@
 ---
-pagination:
-  data: library.pages
-  size: 1
-  alias: p
-permalink: "{{ p.home }}"
+pagination: { data: library.pages, size: 1, alias: p }
+permalink: "{{ p.url }}"
 layout: base.njk
 eleventyComputed:
-  title: "{{ site.ui[p.lang].title }}"
-  altUrl: "{{ p.alt }}"
+  title: "{{ site.ui[p.lang].tagline }}"
 ---
+{%- from "row.njk" import row -%}
 {%- set ui = site.ui[p.lang] -%}
-{%- set L = site.labels -%}
+<h1 class="sr">{{ site.name }} – {{ ui.tagline }}</h1>
+<div class="split">
+{%- for s in library.sections %}
+  <section class="half {{ s.key }}">
+    {% include "art-" + s.key + ".svg" %}
+    <small>{{ s.kicker[p.lang] }}</small>
+    <h2><a href="{{ s.url[p.lang] }}">{{ s.title[p.lang] }}</a></h2>
+    <p>{{ s.intro[p.lang] }}</p>
+    <ul>
+    {%- for t in s.topics %}
+      <li><a href="{{ t.url[p.lang] }}"><i aria-hidden="true">{{ t.icon }}</i> {{ t.title[p.lang] }}</a></li>
+    {%- endfor %}
+    </ul>
+  </section>
+{%- endfor %}
+</div>
 
-{#- One resource as a row: the whole row is a link to the provider. Used in all lists. -#}
-{%- macro row(r) -%}
-<li class="row" data-ways="{{ r.ways | join(' ') }}" data-levels="{{ r.levels | join(' ') }}" data-rank="{{ r.rank }}"
-    data-text="{{ [r.name, r.sum.nl, r.sum.en, L.cat[r.cat].nl, L.cat[r.cat].en, L.where[r.where].nl, L.where[r.where].en] | searchText }}">
-  <a class="row-main" href="{{ r.url }}" rel="noopener">
-    <span class="row-name">{{ r.name }}</span>
-    <span class="row-sum">{{ r.sum[p.lang] }}</span>
-    <span class="row-tags">
-      <b class="{{ r.cost }}">{{ L.cost[r.cost][p.lang] }}</b>
-      <span>{{ r.levels | first }}{% if r.levels.length > 1 %}–{{ r.levels | last }}{% endif %}</span>
-      <span>{{ L.fmt[r.formats | first][p.lang] }}</span>
-      {%- if r.where == "amsterdam" %}<span>📍 Amsterdam</span>{% endif %}
-      <span class="langs">🌐 {% for l in r.langs %}<span lang="{{ l }}">{{ L.lang[l] }}</span>{% if not loop.last %}, {% endif %}{% endfor %}</span>
-    </span>
-    <span class="row-go" aria-hidden="true">↗</span>
+<div class="grid">
+  <a class="card tile choose" href="{{ p.choose }}">
+    <h2><span aria-hidden="true">🧭</span> {{ ui.chooseCardTitle }}</h2>
+    <p>{{ ui.chooseCardText }}</p>
+    <span class="btn">{{ ui.chooseCardLink }} →</span>
   </a>
-  <a class="report" href="{{ site.repo }}/issues/new?title={{ ('Problem: ' + r.name) | urlencode }}" rel="noopener" aria-label="{{ ui.report }}: {{ r.name }}" title="{{ ui.report }}">⚑</a>
-</li>
-{%- endmacro -%}
-
-<h1>{{ ui.h1 }}</h1>
-<p class="lead">{{ ui.lead }}</p>
-
-<form id="finder" class="sentence" hidden data-copied="{{ ui.copied }}">
-  <span class="words">{{ ui.s1 }}</span>
-  <fieldset class="slot" data-slot="speak">
-    <legend class="sr">{{ ui.s1 }} … {{ ui.s2 }}</legend>
-    {%- for key, v in L.speak %}
-    <label class="pill"><input type="radio" name="speak" value="{{ key }}" data-levels="{{ v.levels | join(' ') }}"><span>{{ v[p.lang] }}</span></label>
-    {%- endfor %}
-    <button type="button" class="edit" hidden>✎ {{ ui.change }}</button>
-  </fieldset>
-  <span class="words">{{ ui.s2 }}</span>
-  <fieldset class="slot" data-slot="way">
-    <legend class="sr">{{ ui.s2 }} …</legend>
-    {%- for key, w in L.ways %}
-    <label class="pill"><input type="radio" name="way" value="{{ key }}"><span><i aria-hidden="true">{{ w.icon }}</i> {{ w[p.lang] }}</span></label>
-    {%- endfor %}
-    <button type="button" class="edit" hidden>✎ {{ ui.change }}</button>
-  </fieldset>
-</form>
-
-<section id="match" class="match" aria-live="polite" hidden>
-  <div id="waiting">
-    <p class="hint">{{ ui.waiting }}</p>
-    <ul class="rows">
-    {%- for r in library.quick %}{{ row(r) }}{% endfor %}
-    </ul>
-  </div>
-  <div id="results" hidden>
-    <h2>{{ ui.bestFor }}</h2>
-    <p id="closest" class="hint" hidden>{{ ui.closest }}</p>
-    <ul id="res-list" class="rows big"></ul>
-    <ul class="now">
-    {%- for s in library.searchNow %}
-      <li data-way="{{ s.way }}"><a href="https://www.google.com/search?q={{ s.q | urlencode }}" rel="noopener">🔎 {{ s.t[p.lang] }}</a></li>
+  <section class="card">
+    <h2><span aria-hidden="true">🌱</span> {{ ui.freeTitle }}</h2>
+    <ul class="mini">
+    {%- for r in library.quick %}
+      <li><a href="{{ r.url }}" rel="noopener">{{ r.name }}</a><br><span>{{ r.sum[p.lang] }}</span></li>
     {%- endfor %}
     </ul>
-    <p><button type="button" id="share">{{ ui.share }}</button></p>
-  </div>
-</section>
-
-<section class="browse" aria-labelledby="browse-h">
-  <h2 id="browse-h">{{ ui.browseTitle }}</h2>
-  <label class="find"><span class="sr">{{ ui.search }}</span>
-    <input type="search" id="find" placeholder="{{ ui.searchPh }}" autocomplete="off"></label>
-  {%- for key, w in L.ways %}
-  {%- set list = library.groups[key] %}
-  {%- if list.length %}
-  <details class="group" data-way="{{ key }}">
-    <summary><i aria-hidden="true">{{ w.icon }}</i> {{ w.title[p.lang] }} <span class="n">{{ list.length }}</span></summary>
-    <ul class="rows">
-    {%- for r in list %}{{ row(r) }}{% endfor %}
-    </ul>
-  </details>
-  {%- endif %}
-  {%- endfor %}
-  <p id="none" class="hint" hidden>{{ ui.noResults }}</p>
-  <details class="levels">
-    <summary>{{ ui.levelsTitle }}</summary>
+  </section>
+  <section class="card">
+    <h2><span aria-hidden="true">📶</span> {{ ui.levelsCard }}</h2>
     <p>{{ ui.levelsText }}</p>
-  </details>
-</section>
+  </section>
+</div>

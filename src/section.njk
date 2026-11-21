@@ -1,0 +1,27 @@
+---
+pagination: { data: library.sectionPages, size: 1, alias: p }
+permalink: "{{ p.url }}"
+layout: base.njk
+eleventyComputed:
+  title: "{{ p.section.title[p.lang] }}"
+  description: "{{ p.section.intro[p.lang] }}"
+---
+{%- set ui = site.ui[p.lang] -%}
+{%- set s = p.section -%}
+<nav class="crumbs"><a href="{{ p.home }}">{{ ui.home }}</a> › {{ s.title[p.lang] }}</nav>
+<header class="banner {{ s.key }}">
+  <h1><span aria-hidden="true">{{ s.icon }}</span> {{ s.title[p.lang] }}</h1>
+  <p>{{ s.intro[p.lang] }}</p>
+</header>
+<div class="grid">
+{%- for t in s.topics %}
+  <a class="card tile" href="{{ t.url[p.lang] }}">
+    <h2><span aria-hidden="true">{{ t.icon }}</span> {{ t.title[p.lang] }}</h2>
+    <p>{{ t.intro[p.lang] }}</p>
+    <small class="n">{% if t.resources.length == 1 %}{{ ui.count1 }}{% else %}{{ ui.countN | replace("{n}", t.resources.length) }}{% endif %}{% if t.live.length %} · 🔎{% endif %}</small>
+  </a>
+{%- endfor %}
+</div>
+{%- for o in library.sections %}{% if o.key != s.key %}
+<p class="other">{{ ui.otherSection }}: <a href="{{ o.url[p.lang] }}">{{ o.icon }} {{ o.title[p.lang] }} →</a></p>
+{%- endif %}{% endfor %}
