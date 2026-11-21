@@ -1,0 +1,45 @@
+# Checks every link on the site once a week. If links are broken, an issue is
+# opened in the repository (GitHub e-mails you about it). No issue = nothing to do.
+name: Check links
+
+on:
+  schedule:
+    - cron: "41 5 * * 1" # Mondays, 05:41 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+      - id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          fail: false
+          # 403/429 = the site is there but refuses robots; not a broken link.
+          # "Search now" buttons (google.com) and "report a problem" links are skipped.
+          args: >-
+            --no-progress --max-retries 3 --timeout 30
+            --accept 200..=299,403,429
+            --exclude 'google\.com' --exclude 'github\.com/KingQaut/nederlands-leren/issues'
+            --root-dir ${{ github.workspace }}/_site
+            '_site/**/*.html'
+
+      - name: Report broken links
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: Broken links found on NederlandsLeren
+          content-filepath: ./lychee/out.md
+          labels: broken-links

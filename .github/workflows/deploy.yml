@@ -1,0 +1,42 @@
+# Builds the site and publishes it on GitHub Pages:
+#  - whenever something is changed in the repository
+#  - when started by hand from the Actions tab
+name: Build and publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # The free address is kingqaut.github.io/nederlands-leren/, so all links
+      # need that prefix. Remove this line once a custom domain is connected.
+      - run: npm run build
+        env:
+          PATH_PREFIX: /nederlands-leren/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4

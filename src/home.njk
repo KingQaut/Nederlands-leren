@@ -1,0 +1,102 @@
+---
+pagination:
+  data: library.pages
+  size: 1
+  alias: p
+permalink: "{{ p.home }}"
+layout: base.njk
+eleventyComputed:
+  title: "{{ site.ui[p.lang].title }}"
+  altUrl: "{{ p.alt }}"
+---
+{%- set ui = site.ui[p.lang] -%}
+{%- set L = site.labels -%}
+<h1>{{ ui.title }}</h1>
+<p class="intro">{{ ui.intro }}</p>
+
+<section class="quick" aria-labelledby="quick-h">
+  <h2 id="quick-h">{{ ui.startToday }}</h2>
+  <ul>
+  {%- for r in library.quick %}
+    <li><a href="{{ r.url }}" rel="noopener"><b>{{ r.name }}</b><span>{{ r.sum[p.lang] }}</span></a></li>
+  {%- endfor %}
+  </ul>
+</section>
+
+<div class="explain">
+  <details>
+    <summary>{{ ui.mustTitle }}</summary>
+    <p>{{ ui.mustText }}</p>
+    <p><a href="https://www.inburgeren.nl/" rel="noopener">{{ ui.mustLink }}</a></p>
+  </details>
+  <details>
+    <summary>{{ ui.levelsTitle }}</summary>
+    <p>{{ ui.levelsText }}</p>
+  </details>
+</div>
+
+<section aria-labelledby="dir-h">
+  <h2 id="dir-h">{{ ui.topics }}</h2>
+  <form id="filters" class="filters" role="search" hidden data-count="{{ ui.count }}" data-count-one="{{ ui.countOne }}" data-copied="{{ ui.copied }}">
+    <fieldset class="cats">
+      <legend class="sr">{{ ui.topics }}</legend>
+      <label><input type="radio" name="cat" value="" checked><span>✨ {{ ui.allTopics }}</span></label>
+      {%- for key, c in L.cat %}
+      <label><input type="radio" name="cat" value="{{ key }}"><span>{{ c.icon }} {{ c[p.lang] }}</span></label>
+      {%- endfor %}
+    </fieldset>
+    <div class="row">
+      <label class="grow"><span>{{ ui.search }}</span>
+        <input type="search" name="q" placeholder="{{ ui.searchPh }}" autocomplete="off"></label>
+      <label><span>{{ ui.level }}</span>
+        <select name="level"><option value="">{{ ui.any }}</option>{% for l in L.levels %}<option>{{ l }}</option>{% endfor %}</select></label>
+      <label><span>{{ ui.cost }}</span>
+        <select name="cost"><option value="">{{ ui.any }}</option>{% for key, c in L.cost %}<option value="{{ key }}">{{ c[p.lang] }}</option>{% endfor %}</select></label>
+      <label><span>{{ ui.format }}</span>
+        <select name="format"><option value="">{{ ui.any }}</option>{% for key, c in L.fmt %}<option value="{{ key }}">{{ c[p.lang] }}</option>{% endfor %}</select></label>
+      <label><span>{{ ui.where }}</span>
+        <select name="where"><option value="">{{ ui.any }}</option>{% for key, c in L.where %}<option value="{{ key }}">{{ c[p.lang] }}</option>{% endfor %}</select></label>
+    </div>
+    <div class="row tools">
+      <output id="count" aria-live="polite"></output>
+      <button type="reset">{{ ui.reset }}</button>
+      <button type="button" id="share">{{ ui.share }}</button>
+      <button type="button" id="print">{{ ui.print }}</button>
+    </div>
+  </form>
+
+  <h3 class="sr">{{ ui.directory }}</h3>
+  <ul class="cards" id="cards">
+  {%- for r in library.resources %}
+    {%- set c = L.cat[r.cat] %}
+    <li class="card" data-cat="{{ r.cat }}" data-levels="{{ r.levels | join(' ') }}" data-cost="{{ r.cost }}" data-formats="{{ r.formats | join(' ') }}" data-where="{{ r.where }}"
+        data-text="{{ [r.name, r.sum.nl, r.sum.en, c.nl, c.en, L.where[r.where].nl, L.where[r.where].en] | searchText }}">
+      <p class="kicker"><span aria-hidden="true">{{ c.icon }}</span> {{ c[p.lang] }}</p>
+      <h4><a href="{{ r.url }}" rel="noopener">{{ r.name }}</a></h4>
+      <p>{{ r.sum[p.lang] }}</p>
+      <ul class="tags">
+        <li class="lvl">{{ r.levels | first }}{% if r.levels.length > 1 %}–{{ r.levels | last }}{% endif %}</li>
+        <li class="{{ r.cost }}">{{ L.cost[r.cost][p.lang] }}</li>
+        {%- for f in r.formats %}<li>{{ L.fmt[f][p.lang] }}</li>{% endfor %}
+        <li>📍 {{ L.where[r.where][p.lang] }}</li>
+        <li>{{ L.trust[r.trust][p.lang] }}</li>
+      </ul>
+      {%- if r.address %}<p class="meta">{{ r.address }}</p>{% endif %}
+      <p class="meta">{{ ui.explainedIn }}: {% for l in r.langs %}<span lang="{{ l }}">{{ L.lang[l] }}</span>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+      <p class="actions"><a class="go" href="{{ r.url }}" rel="noopener">{{ ui.open }} <span aria-hidden="true">→</span></a>
+        <a class="report" href="{{ site.repo }}/issues/new?title={{ ('Problem: ' + r.name) | urlencode }}" rel="noopener">{{ ui.report }}</a></p>
+    </li>
+  {%- endfor %}
+  </ul>
+  <p id="none" class="none" hidden>{{ ui.noResults }}</p>
+</section>
+
+<section class="now" aria-labelledby="now-h">
+  <h2 id="now-h">{{ ui.searchNowTitle }}</h2>
+  <p>{{ ui.searchNowText }}</p>
+  <ul>
+  {%- for s in library.searchNow %}
+    <li data-cat="{{ s.cat }}"><a href="https://www.google.com/search?q={{ s.q | urlencode }}" rel="noopener">🔎 {{ s.t[p.lang] }}</a></li>
+  {%- endfor %}
+  </ul>
+</section>
