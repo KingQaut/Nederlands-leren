@@ -38,12 +38,11 @@
   </nav>
 </header>
 {%- set notice %}<div class="notice" role="note"><div class="wrap"><span aria-hidden="true">ⓘ</span> {{ ui.disclaimer }} <a href="{{ p.about }}">{{ ui.moreInfo }}</a></div></div>{% endset %}
-{#- On the home page the disclaimer sits at the bottom, above the footer; on other pages at the top. #}
-{% if p.url != p.home %}{{ notice | safe }}{% endif %}
 <main class="wrap">
 {{ content | safe }}
 </main>
-{% if p.url == p.home %}{{ notice | safe }}{% endif %}
+{#- The disclaimer sits at the bottom of every page, above the footer. #}
+{{ notice | safe }}
 <footer class="foot">
   <div class="wrap">
     <p>{{ ui.footer }}</p>
