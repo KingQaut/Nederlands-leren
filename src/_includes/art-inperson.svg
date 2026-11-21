@@ -7,8 +7,5 @@
 <g transform="translate(70 0)">
 <circle cx="40" cy="96" r="9" fill="#fcd9b6"/><path d="M27 138v-24c0-8 6-12 13-12s13 4 13 12v24z" fill="#0f766e"/><path d="M31 96c0-8 18-10 18 0c-2-6-16-6-18 0z" fill="#1c1917"/>
 <circle cx="92" cy="100" r="9" fill="#a16207"/><path d="M79 138v-20c0-8 6-12 13-12s13 4 13 12v20z" fill="#7c3aed"/><path d="M82 99c-2-10 22-12 20 0c-1 4-1 10-1 14h-18c0-4 0-10-1-14z" fill="#1c1917" opacity=".9"/>
-<g font-family="system-ui,sans-serif" font-size="12" font-weight="700">
-<path d="M0 50h78a8 8 0 0 1 8 8v14a8 8 0 0 1-8 8h-36l-8 9v-9h-34a8 8 0 0 1-8-8v-14a8 8 0 0 1 8-8z" fill="#fff"/><text x="39" y="69" text-anchor="middle" fill="#9a3412">Hoe gaat het?</text>
-<path d="M92 66h44a8 8 0 0 1 8 8v12a8 8 0 0 1-8 8h-22v8l-8-8h-14a8 8 0 0 1-8-8v-12a8 8 0 0 1 8-8z" fill="#fff"/><text x="114" y="84" text-anchor="middle" fill="#9a3412">Goed!</text>
-</g></g>
+</g>
 </svg>

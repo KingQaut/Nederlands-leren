@@ -1,20 +1,16 @@
 <svg class="sky" viewBox="0 0 600 170" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-<rect x="0" y="148" width="600" height="22" fill="#312e81"/>
-<rect x="0" y="146" width="600" height="4" fill="#a5b4fc" opacity=".5"/>
-<g transform="translate(300 0)">
-<rect x="40" y="52" width="170" height="92" rx="8" fill="#1e1b4b"/><rect x="48" y="60" width="154" height="76" rx="3" fill="#e0e7ff"/>
-<path d="M20 144h210l-12 8H32z" fill="#c7d2fe"/>
-<rect x="60" y="72" width="60" height="8" rx="4" fill="#4f46e5"/><rect x="60" y="88" width="120" height="6" rx="3" fill="#a5b4fc"/><rect x="60" y="100" width="96" height="6" rx="3" fill="#a5b4fc"/>
-<circle cx="72" cy="122" r="7" fill="#22c55e"/><path d="M68.5 122l2.5 2.5 4.5-5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
-<rect x="86" y="116" width="40" height="12" rx="6" fill="#fff" stroke="#a5b4fc"/><rect x="132" y="116" width="40" height="12" rx="6" fill="#fff" stroke="#a5b4fc"/>
-<rect x="-50" y="86" width="40" height="64" rx="7" fill="#1e1b4b"/><rect x="-46" y="94" width="32" height="46" rx="3" fill="#fef3c7"/>
-<text x="-30" y="114" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="800" fill="#4338ca">A1</text>
-<rect x="-42" y="122" width="24" height="5" rx="2.5" fill="#f59e0b"/><rect x="-42" y="130" width="16" height="5" rx="2.5" fill="#fcd34d"/>
-<path d="M248 146c-4-14 0-30 8-36c2 12-2 26-8 36z" fill="#22c55e"/><path d="M252 146c6-12 18-18 26-16c-8 8-16 14-26 16z" fill="#16a34a"/><rect x="242" y="136" width="20" height="12" rx="3" fill="#f97316"/>
-</g>
-<g font-family="system-ui,sans-serif" font-size="12" font-weight="700">
-<path d="M80 58h56a8 8 0 0 1 8 8v12a8 8 0 0 1-8 8h-20l-8 9v-9h-28a8 8 0 0 1-8-8v-12a8 8 0 0 1 8-8z" fill="#fff"/><text x="108" y="76" text-anchor="middle" fill="#3730a3">hallo!</text>
-<path d="M150 22h88a8 8 0 0 1 8 8v12a8 8 0 0 1-8 8h-50l-8 9v-9h-30a8 8 0 0 1-8-8v-12a8 8 0 0 1 8-8z" fill="#fff" opacity=".92"/><text x="194" y="40" text-anchor="middle" fill="#3730a3">goedemorgen</text>
-<path d="M210 74h70a8 8 0 0 1 8 8v12a8 8 0 0 1-8 8h-24v9l-8-9h-38a8 8 0 0 1-8-8v-12a8 8 0 0 1 8-8z" fill="#fff" opacity=".85"/><text x="245" y="92" text-anchor="middle" fill="#3730a3">dank je wel</text>
-</g>
+<rect x="0" y="138" width="600" height="6" fill="#a5b4fc" opacity=".55"/>
+<rect x="0" y="144" width="600" height="26" fill="#312e81"/>
+<g stroke="#818cf8" stroke-width="2" stroke-linecap="round" opacity=".45"><path d="M70 156h40M250 160h60M430 154h36M520 162h30"/></g>
+<rect x="112" y="118" width="22" height="20" rx="4" fill="#fbbf24"/><path d="M134 123h5a5 5 0 0 1 0 10h-5" fill="none" stroke="#fbbf24" stroke-width="3"/>
+<rect x="152" y="74" width="40" height="64" rx="7" fill="#1e1b4b"/><rect x="156" y="82" width="32" height="46" rx="3" fill="#fef3c7"/>
+<text x="172" y="102" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="800" fill="#4338ca">A1</text>
+<rect x="160" y="110" width="24" height="5" rx="2.5" fill="#f59e0b"/><rect x="160" y="118" width="16" height="5" rx="2.5" fill="#fcd34d"/>
+<rect x="232" y="44" width="172" height="88" rx="8" fill="#1e1b4b"/><rect x="240" y="52" width="156" height="72" rx="3" fill="#e0e7ff"/>
+<path d="M214 132h208l-12 6H226z" fill="#c7d2fe"/>
+<rect x="252" y="62" width="60" height="8" rx="4" fill="#4f46e5"/><rect x="252" y="78" width="120" height="6" rx="3" fill="#a5b4fc"/><rect x="252" y="90" width="96" height="6" rx="3" fill="#a5b4fc"/>
+<circle cx="264" cy="110" r="7" fill="#22c55e"/><path d="M260.5 110l2.5 2.5 4.5-5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+<rect x="278" y="104" width="40" height="12" rx="6" fill="#fff" stroke="#a5b4fc"/><rect x="324" y="104" width="40" height="12" rx="6" fill="#fff" stroke="#a5b4fc"/>
+<path d="M460 128c-4-14 0-30 8-36c2 12-2 26-8 36z" fill="#22c55e"/><path d="M464 128c6-12 18-18 26-16c-8 8-16 14-26 16z" fill="#16a34a"/><path d="M458 128c-8-8-16-10-22-8c6 6 14 9 22 8z" fill="#4ade80"/>
+<rect x="452" y="124" width="22" height="14" rx="3" fill="#f97316"/>
 </svg>
