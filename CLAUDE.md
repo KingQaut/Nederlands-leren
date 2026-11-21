@@ -24,9 +24,13 @@ Do not add anything that needs regular human upkeep without asking the owner fir
 | --- | --- |
 | Resources (one entry each, NL + EN texts) and "search now" buttons | `content/resources.js` |
 | Interface texts and labels (categories, formats, levels…) | `src/_data/site.js` |
-| Content passed to templates | `src/_data/library.js` (not `content.js`: that name clashes with the layout's `content`) |
-| Home page with directory, filters and search; about page | `src/home.njk`, `src/about.njk` (paginated over languages in `library.pages`) |
-| Client-side filters, typo-tolerant search, share/print | `src/assets/site.js` (filters sync to the URL query) |
+| Content passed to templates; works out each resource's "ways" of learning and its rank | `src/_data/library.js` (not `content.js`: that name clashes with the layout's `content`) |
+| Home page; about page | `src/home.njk`, `src/about.njk` (paginated over languages in `library.pages`) |
+| The sentence finder, its results, and search in "browse everything" | `src/assets/site.js` (choice syncs to `?speak=…&way=…`) |
+
+## Home page design
+
+The home page is one sentence with two blanks: "I speak [no / a little / quite a lot of] Dutch and I want to learn [on my phone / by talking with people / in a class or course / to read and write / with my children]." Two taps show up to 6 best matches (exact level first, then free, then official/library/non-profit), plus matching "search now" buttons. A filled blank collapses to the chosen word so the sentence reads as one line; "change" reopens it. Below it, "browse everything" lists all resources grouped by way of learning, with a typo-tolerant search. Without JavaScript only the grouped list shows. Answers and ways are defined in `labels.speak` and `labels.ways` in `src/_data/site.js`; which resources fit which way is in `waysOf()` in `library.js`.
 | Publish on push / weekly link check | `.github/workflows/deploy.yml`, `links.yml` |
 
 - Nunjucks pitfall: `none` is a keyword, so a data key named `none` breaks the template.

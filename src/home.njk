@@ -11,87 +11,87 @@ eleventyComputed:
 ---
 {%- set ui = site.ui[p.lang] -%}
 {%- set L = site.labels -%}
-<h1>{{ ui.title }}</h1>
-<p class="intro">{{ ui.intro }}</p>
 
-<section class="quick" aria-labelledby="quick-h">
-  <h2 id="quick-h">{{ ui.startToday }}</h2>
-  <ul>
-  {%- for r in library.quick %}
-    <li><a href="{{ r.url }}" rel="noopener"><b>{{ r.name }}</b><span>{{ r.sum[p.lang] }}</span></a></li>
-  {%- endfor %}
-  </ul>
+{#- One resource as a row: the whole row is a link to the provider. Used in all lists. -#}
+{%- macro row(r) -%}
+<li class="row" data-ways="{{ r.ways | join(' ') }}" data-levels="{{ r.levels | join(' ') }}" data-rank="{{ r.rank }}"
+    data-text="{{ [r.name, r.sum.nl, r.sum.en, L.cat[r.cat].nl, L.cat[r.cat].en, L.where[r.where].nl, L.where[r.where].en] | searchText }}">
+  <a class="row-main" href="{{ r.url }}" rel="noopener">
+    <span class="row-name">{{ r.name }}</span>
+    <span class="row-sum">{{ r.sum[p.lang] }}</span>
+    <span class="row-tags">
+      <b class="{{ r.cost }}">{{ L.cost[r.cost][p.lang] }}</b>
+      <span>{{ r.levels | first }}{% if r.levels.length > 1 %}–{{ r.levels | last }}{% endif %}</span>
+      <span>{{ L.fmt[r.formats | first][p.lang] }}</span>
+      {%- if r.where == "amsterdam" %}<span>📍 Amsterdam</span>{% endif %}
+      <span class="langs">🌐 {% for l in r.langs %}<span lang="{{ l }}">{{ L.lang[l] }}</span>{% if not loop.last %}, {% endif %}{% endfor %}</span>
+    </span>
+    <span class="row-go" aria-hidden="true">↗</span>
+  </a>
+  <a class="report" href="{{ site.repo }}/issues/new?title={{ ('Problem: ' + r.name) | urlencode }}" rel="noopener" aria-label="{{ ui.report }}: {{ r.name }}" title="{{ ui.report }}">⚑</a>
+</li>
+{%- endmacro -%}
+
+<h1>{{ ui.h1 }}</h1>
+<p class="lead">{{ ui.lead }}</p>
+
+<form id="finder" class="sentence" hidden data-copied="{{ ui.copied }}">
+  <span class="words">{{ ui.s1 }}</span>
+  <fieldset class="slot" data-slot="speak">
+    <legend class="sr">{{ ui.s1 }} … {{ ui.s2 }}</legend>
+    {%- for key, v in L.speak %}
+    <label class="pill"><input type="radio" name="speak" value="{{ key }}" data-levels="{{ v.levels | join(' ') }}"><span>{{ v[p.lang] }}</span></label>
+    {%- endfor %}
+    <button type="button" class="edit" hidden>✎ {{ ui.change }}</button>
+  </fieldset>
+  <span class="words">{{ ui.s2 }}</span>
+  <fieldset class="slot" data-slot="way">
+    <legend class="sr">{{ ui.s2 }} …</legend>
+    {%- for key, w in L.ways %}
+    <label class="pill"><input type="radio" name="way" value="{{ key }}"><span><i aria-hidden="true">{{ w.icon }}</i> {{ w[p.lang] }}</span></label>
+    {%- endfor %}
+    <button type="button" class="edit" hidden>✎ {{ ui.change }}</button>
+  </fieldset>
+</form>
+
+<section id="match" class="match" aria-live="polite" hidden>
+  <div id="waiting">
+    <p class="hint">{{ ui.waiting }}</p>
+    <ul class="rows">
+    {%- for r in library.quick %}{{ row(r) }}{% endfor %}
+    </ul>
+  </div>
+  <div id="results" hidden>
+    <h2>{{ ui.bestFor }}</h2>
+    <p id="closest" class="hint" hidden>{{ ui.closest }}</p>
+    <ul id="res-list" class="rows big"></ul>
+    <ul class="now">
+    {%- for s in library.searchNow %}
+      <li data-way="{{ s.way }}"><a href="https://www.google.com/search?q={{ s.q | urlencode }}" rel="noopener">🔎 {{ s.t[p.lang] }}</a></li>
+    {%- endfor %}
+    </ul>
+    <p><button type="button" id="share">{{ ui.share }}</button></p>
+  </div>
 </section>
 
-<div class="explain">
-  <details>
+<section class="browse" aria-labelledby="browse-h">
+  <h2 id="browse-h">{{ ui.browseTitle }}</h2>
+  <label class="find"><span class="sr">{{ ui.search }}</span>
+    <input type="search" id="find" placeholder="{{ ui.searchPh }}" autocomplete="off"></label>
+  {%- for key, w in L.ways %}
+  {%- set list = library.groups[key] %}
+  {%- if list.length %}
+  <details class="group" data-way="{{ key }}">
+    <summary><i aria-hidden="true">{{ w.icon }}</i> {{ w.title[p.lang] }} <span class="n">{{ list.length }}</span></summary>
+    <ul class="rows">
+    {%- for r in list %}{{ row(r) }}{% endfor %}
+    </ul>
+  </details>
+  {%- endif %}
+  {%- endfor %}
+  <p id="none" class="hint" hidden>{{ ui.noResults }}</p>
+  <details class="levels">
     <summary>{{ ui.levelsTitle }}</summary>
     <p>{{ ui.levelsText }}</p>
   </details>
-</div>
-
-<section aria-labelledby="dir-h">
-  <h2 id="dir-h">{{ ui.topics }}</h2>
-  <form id="filters" class="filters" role="search" hidden data-count="{{ ui.count }}" data-count-one="{{ ui.countOne }}" data-copied="{{ ui.copied }}">
-    <fieldset class="cats">
-      <legend class="sr">{{ ui.topics }}</legend>
-      <label><input type="radio" name="cat" value="" checked><span>✨ {{ ui.allTopics }}</span></label>
-      {%- for key, c in L.cat %}
-      <label><input type="radio" name="cat" value="{{ key }}"><span>{{ c.icon }} {{ c[p.lang] }}</span></label>
-      {%- endfor %}
-    </fieldset>
-    <div class="row">
-      <label class="grow"><span>{{ ui.search }}</span>
-        <input type="search" name="q" placeholder="{{ ui.searchPh }}" autocomplete="off"></label>
-      <label><span>{{ ui.level }}</span>
-        <select name="level"><option value="">{{ ui.any }}</option>{% for l in L.levels %}<option>{{ l }}</option>{% endfor %}</select></label>
-      <label><span>{{ ui.cost }}</span>
-        <select name="cost"><option value="">{{ ui.any }}</option>{% for key, c in L.cost %}<option value="{{ key }}">{{ c[p.lang] }}</option>{% endfor %}</select></label>
-      <label><span>{{ ui.format }}</span>
-        <select name="format"><option value="">{{ ui.any }}</option>{% for key, c in L.fmt %}<option value="{{ key }}">{{ c[p.lang] }}</option>{% endfor %}</select></label>
-      <label><span>{{ ui.where }}</span>
-        <select name="where"><option value="">{{ ui.any }}</option>{% for key, c in L.where %}<option value="{{ key }}">{{ c[p.lang] }}</option>{% endfor %}</select></label>
-    </div>
-    <div class="row tools">
-      <output id="count" aria-live="polite"></output>
-      <button type="reset">{{ ui.reset }}</button>
-      <button type="button" id="share">{{ ui.share }}</button>
-      <button type="button" id="print">{{ ui.print }}</button>
-    </div>
-  </form>
-
-  <h3 class="sr">{{ ui.directory }}</h3>
-  <ul class="cards" id="cards">
-  {%- for r in library.resources %}
-    {%- set c = L.cat[r.cat] %}
-    <li class="card" data-cat="{{ r.cat }}" data-levels="{{ r.levels | join(' ') }}" data-cost="{{ r.cost }}" data-formats="{{ r.formats | join(' ') }}" data-where="{{ r.where }}"
-        data-text="{{ [r.name, r.sum.nl, r.sum.en, c.nl, c.en, L.where[r.where].nl, L.where[r.where].en] | searchText }}">
-      <p class="kicker"><span aria-hidden="true">{{ c.icon }}</span> {{ c[p.lang] }}</p>
-      <h4><a href="{{ r.url }}" rel="noopener">{{ r.name }}</a></h4>
-      <p>{{ r.sum[p.lang] }}</p>
-      <ul class="tags">
-        <li class="lvl">{{ r.levels | first }}{% if r.levels.length > 1 %}–{{ r.levels | last }}{% endif %}</li>
-        <li class="{{ r.cost }}">{{ L.cost[r.cost][p.lang] }}</li>
-        {%- for f in r.formats %}<li>{{ L.fmt[f][p.lang] }}</li>{% endfor %}
-        <li>📍 {{ L.where[r.where][p.lang] }}</li>
-        <li>{{ L.trust[r.trust][p.lang] }}</li>
-      </ul>
-      {%- if r.address %}<p class="meta">{{ r.address }}</p>{% endif %}
-      <p class="meta">{{ ui.explainedIn }}: {% for l in r.langs %}<span lang="{{ l }}">{{ L.lang[l] }}</span>{% if not loop.last %}, {% endif %}{% endfor %}</p>
-      <p class="actions"><a class="go" href="{{ r.url }}" rel="noopener">{{ ui.open }} <span aria-hidden="true">→</span></a>
-        <a class="report" href="{{ site.repo }}/issues/new?title={{ ('Problem: ' + r.name) | urlencode }}" rel="noopener">{{ ui.report }}</a></p>
-    </li>
-  {%- endfor %}
-  </ul>
-  <p id="none" class="none" hidden>{{ ui.noResults }}</p>
-</section>
-
-<section class="now" aria-labelledby="now-h">
-  <h2 id="now-h">{{ ui.searchNowTitle }}</h2>
-  <p>{{ ui.searchNowText }}</p>
-  <ul>
-  {%- for s in library.searchNow %}
-    <li data-cat="{{ s.cat }}"><a href="https://www.google.com/search?q={{ s.q | urlencode }}" rel="noopener">🔎 {{ s.t[p.lang] }}</a></li>
-  {%- endfor %}
-  </ul>
 </section>
