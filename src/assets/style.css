@@ -34,7 +34,8 @@ i { font-style: normal; }
 .lang { font-weight: 600; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 .notice { background: var(--note); color: var(--note-ink); font-size: .85rem; padding: 6px 0; }
 .notice a { color: inherit; font-weight: 600; }
-main { padding-bottom: 48px; min-height: 60vh; }
+main + .notice { margin-top: 0; }
+main.wrap { padding-bottom: 40px; min-height: 60vh; }
 .foot { border-top: 1px solid var(--line); background: var(--card); color: var(--muted); font-size: .9rem; padding: 18px 0; }
 
 /* header search + menu */
