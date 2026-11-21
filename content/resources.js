@@ -348,4 +348,15 @@ export const resources = [
       en: "Videos and songs for toddlers from Dutch public broadcasting. Learn simple words together with your child.",
     },
   },
+  {
+    name: "Regina Coeli Language Institute",
+    topics: ["onlineclass", "course"],
+    url: "https://www.reginacoeli.nl/",
+    cat: "courses", levels: ["A0", "A1", "A2", "B1", "B2"], cost: "paid", formats: ["online", "class"],
+    langs: ["en"], where: "national", trust: "app",
+    sum: {
+      nl: "Intensieve privélessen Nederlands, online of op locatie in Vught. Duur, maar snel resultaat.",
+      en: "Intensive private Dutch lessons, online or on site in Vught. Expensive, but fast results.",
+    },
+  },
 ];
