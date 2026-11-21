@@ -33,8 +33,8 @@ jobs:
           args: >-
             --no-progress --max-retries 3 --timeout 30
             --accept 200..=299,403,429
-            --exclude 'google\.com' --exclude 'github\.com/KingQaut/nederlands-leren/issues'
-            --exclude 'kingqaut\.github\.io/nederlands-leren'
+            --exclude 'google\.com' --exclude '(?i)github\.com/KingQaut/nederlands-leren/issues'
+            --exclude '(?i)kingqaut\.github\.io/nederlands-leren'
             --root-dir ${{ github.workspace }}/_site
             '_site/**/*.html'
 

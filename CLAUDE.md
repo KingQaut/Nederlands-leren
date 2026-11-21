@@ -1,7 +1,7 @@
 # NederlandsLeren – project notes for a new session
 
 A free website that helps newcomers to the Netherlands find resources to learn Dutch.
-Repository `KingQaut/nederlands-leren`, branch `main`. Built on the same pattern as `KingQaut/indiawijzer`.
+Repository `KingQaut/Nederlands-leren`, branch `main`. Built on the same pattern as `KingQaut/indiawijzer`.
 
 The owner is not a developer. Explain steps as clicks in the GitHub website, not as terminal commands.
 
@@ -9,7 +9,7 @@ Product requirements document (a Claude doc, read it with the docs tools): https
 
 ## Hard requirements
 
-- **€0 running cost, minimal maintenance.** No database, CMS, server, paid service or domain. Static Eleventy site on GitHub Pages (free address `kingqaut.github.io/nederlands-leren`).
+- **€0 running cost, minimal maintenance.** No database, CMS, server, paid service or domain. Static Eleventy site on GitHub Pages (free address `kingqaut.github.io/Nederlands-leren`).
 - **Content is generated automatically**, not curated by hand; every page shows a disclaimer saying so. Generation runs on the owner's Claude subscription (planned: a monthly scheduled Claude Code task that regenerates `content/resources.js` and commits it).
 - **Audience:** newcomers with limited Dutch, often on a cheap phone. Plain language, large tap targets, WCAG 2.2 AA, no cookies or tracking.
 - **Coverage:** national and online resources, plus Amsterdam for local listings.
@@ -29,7 +29,7 @@ Do not add anything that needs regular human upkeep without asking the owner fir
 | Publish on push / weekly link check | `.github/workflows/deploy.yml`, `links.yml` |
 
 - Nunjucks pitfall: `none` is a keyword, so a data key named `none` breaks the template.
-- The publish workflow sets `PATH_PREFIX=/nederlands-leren/` for the free GitHub Pages address.
+- The publish workflow sets `PATH_PREFIX=/Nederlands-leren/` for the free GitHub Pages address.
 
 ## Roadmap (from the PRD)
 

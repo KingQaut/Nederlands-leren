@@ -2,8 +2,8 @@
 export default {
   name: "NederlandsLeren",
   // Free address until a domain is chosen. Change this when a domain is connected.
-  url: "https://kingqaut.github.io/nederlands-leren",
-  repo: "https://github.com/KingQaut/nederlands-leren",
+  url: "https://kingqaut.github.io/Nederlands-leren",
+  repo: "https://github.com/KingQaut/Nederlands-leren",
 
   labels: {
     cat: {

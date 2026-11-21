@@ -30,11 +30,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      # The free address is kingqaut.github.io/nederlands-leren/, so all links
+      # The free address is kingqaut.github.io/Nederlands-leren/, so all links
       # need that prefix. Remove this line once a custom domain is connected.
       - run: npm run build
         env:
-          PATH_PREFIX: /nederlands-leren/
+          PATH_PREFIX: /Nederlands-leren/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

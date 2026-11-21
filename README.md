@@ -26,7 +26,7 @@ The content is generated automatically; every page shows a disclaimer saying so.
 
 1. In the repository on GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 2. Open the **Actions** tab and run **Build and publish** (or just change any file).
-3. The site appears at https://kingqaut.github.io/nederlands-leren/.
+3. The site appears at https://kingqaut.github.io/Nederlands-leren/.
 4. Run **Check links** once from the Actions tab and fix whatever it reports in `content/resources.js`.
 
 When a domain is connected later: set it under **Settings → Pages → Custom domain**, change `url` in `src/_data/site.js`, and remove the `PATH_PREFIX` line in `.github/workflows/deploy.yml`.
