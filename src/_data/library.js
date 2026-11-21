@@ -41,6 +41,7 @@ const sections = rawSections.map((s) => {
     url: Object.fromEntries(LANGS.map((l) => [l, `${url[l]}${t.slug[l]}/`])),
     resources: resources.filter((r) => r.topics.includes(t.key)),
     live: t.live || [],
+    hasPaid: resources.some((r) => r.topics.includes(t.key) && r.cost === "paid"),
   }));
   return { ...s, url, topics };
 });

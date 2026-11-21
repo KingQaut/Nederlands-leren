@@ -108,6 +108,9 @@ main { padding-bottom: 48px; min-height: 60vh; }
 .chip:hover { border-color: var(--accent); }
 .chip.strong { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 
+.quality { margin: 14px 0 0; padding: 10px 14px; border-radius: 12px; background: var(--note); color: var(--note-ink); font-size: .92rem; }
+.quality a { color: inherit; font-weight: 600; }
+
 /* the sentence (help me choose) */
 .sentence { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 18px; margin: 0;
   display: flex; flex-wrap: wrap; align-items: center; gap: 10px 8px;

@@ -1,6 +1,6 @@
 {#- One resource as a row: the whole row links to the provider. -#}
 {%- macro row(r, lang, L, ui, repo) -%}
-<li class="row" data-ways="{{ r.ways | join(' ') }}" data-levels="{{ r.levels | join(' ') }}" data-rank="{{ r.rank }}"
+<li class="row" data-ways="{{ r.ways | join(' ') }}" data-levels="{{ r.levels | join(' ') }}" data-rank="{{ r.rank }}" data-cost="{{ r.cost }}"
     data-text="{{ [r.name, r.sum.nl, r.sum.en, L.cat[r.cat].nl, L.cat[r.cat].en, L.where[r.where].nl, L.where[r.where].en] | searchText }}">
   <a class="row-main" href="{{ r.url }}" rel="noopener">
     <span class="row-name">{{ r.name }}</span>

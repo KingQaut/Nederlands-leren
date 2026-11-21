@@ -128,6 +128,7 @@ function matches(text, tokens, words) {
       .slice(0, MAX);
     closest.hidden = exact.length > 0;
     list.replaceChildren(...pick.map((x) => x.r.cloneNode(true)));
+    document.getElementById("paid-note").hidden = !pick.some((x) => x.r.dataset.cost === "paid");
     for (const li of nowLinks) li.hidden = li.dataset.way !== way;
 
     const p = new URLSearchParams({ speak, way });
