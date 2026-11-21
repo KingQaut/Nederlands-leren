@@ -98,16 +98,6 @@ export const resources = [
     },
   },
   {
-    name: "Inburgeren.nl (DUO)",
-    url: "https://www.inburgeren.nl/",
-    cat: "exam", levels: ["A1", "A2", "B1"], cost: "free", formats: ["website", "exam"],
-    langs: ["nl", "en"], where: "national", trust: "official",
-    sum: {
-      nl: "Officiële website over inburgering: wat u moet doen, welke examens er zijn en gratis oefenexamens.",
-      en: "Official civic integration website: what you need to do, which exams there are, and free practice exams.",
-    },
-  },
-  {
     name: "Staatsexamens NT2",
     url: "https://www.staatsexamensnt2.nl/",
     cat: "exam", levels: ["B1", "B2"], cost: "paid", formats: ["exam", "website"],
@@ -118,26 +108,6 @@ export const resources = [
     },
   },
   {
-    name: "Gemeente Amsterdam: inburgeren",
-    url: "https://www.amsterdam.nl/",
-    cat: "exam", levels: ["A0", "A1", "A2", "B1"], cost: "free", formats: ["class"],
-    langs: ["nl", "en"], where: "amsterdam", trust: "official",
-    sum: {
-      nl: "Moet u inburgeren en woont u in Amsterdam? De gemeente maakt met u een persoonlijk plan. Zoek op de site naar 'inburgeren'.",
-      en: "Must you complete civic integration and live in Amsterdam? The municipality makes a personal plan with you. Search the site for 'inburgeren'.",
-    },
-  },
-  {
-    name: "Blik op Werk: scholen met Keurmerk Inburgeren",
-    url: "https://www.blikopwerk.nl/",
-    cat: "courses", levels: ["A0", "A1", "A2", "B1"], cost: "paid", formats: ["class", "online"],
-    langs: ["nl"], where: "national", trust: "quality",
-    sum: {
-      nl: "Zoek een inburgeringsschool met het Keurmerk Inburgeren. Alleen bij deze scholen kunt u lenen bij DUO.",
-      en: "Find a civic integration school with the Keurmerk Inburgeren quality mark. Only these schools accept a DUO loan.",
-    },
-  },
-  {
     name: "UvA Talen",
     url: "https://www.uvatalen.nl/",
     cat: "courses", levels: ["A0", "A1", "A2", "B1", "B2"], cost: "paid", formats: ["class", "online"],
@@ -145,16 +115,6 @@ export const resources = [
     sum: {
       nl: "Taalcentrum van de Universiteit van Amsterdam: betaalde cursussen Nederlands van beginner tot gevorderd.",
       en: "Language centre of the University of Amsterdam: paid Dutch courses from beginner to advanced.",
-    },
-  },
-  {
-    name: "VU Amsterdam: Nederlands leren voor inburgering",
-    url: "https://vu.nl/nl/onderwijs/meer-over/nederlands-leren-voor-inburgering",
-    cat: "courses", levels: ["A1", "A2", "B1"], cost: "paid", formats: ["class"],
-    langs: ["nl"], where: "amsterdam", trust: "university",
-    sum: {
-      nl: "Cursussen Nederlands voor inburgering bij de Vrije Universiteit in Amsterdam.",
-      en: "Dutch courses for civic integration at the Vrije Universiteit in Amsterdam.",
     },
   },
   {

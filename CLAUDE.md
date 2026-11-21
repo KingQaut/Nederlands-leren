@@ -13,7 +13,8 @@ Product requirements document (a Claude doc, read it with the docs tools): https
 - **Content is generated automatically**, not curated by hand; every page shows a disclaimer saying so. Generation runs on the owner's Claude subscription (planned: a monthly scheduled Claude Code task that regenerates `content/resources.js` and commits it).
 - **Audience:** newcomers with limited Dutch, often on a cheap phone. Plain language, large tap targets, WCAG 2.2 AA, no cookies or tracking.
 - **Coverage:** national and online resources, plus Amsterdam for local listings.
-- **Paid schools** are listed only under the quality criteria: inburgering courses need the Blik op Werk Keurmerk Inburgeren; other paid courses only from educational institutions or providers with a recognised quality mark, with a published price and CEFR levels.
+- **Paid schools** are listed only from educational institutions or providers with a recognised quality mark, with a published price and CEFR levels.
+- **Inburgering (civic integration) is a secondary goal, deferred.** The site deliberately has no inburgering content for now; do not add it back until the owner asks. When it returns, inburgering schools need the Blik op Werk Keurmerk Inburgeren.
 
 Do not add anything that needs regular human upkeep without asking the owner first.
 

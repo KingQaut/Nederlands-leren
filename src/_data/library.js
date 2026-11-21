@@ -2,7 +2,7 @@
 import { resources, searchNow, generated } from "../../content/resources.js";
 
 // Shown in the "start today" box on the home page.
-const quickNames = ["Oefenen.nl", "Het Begint met Taal", "Inburgeren.nl (DUO)"];
+const quickNames = ["Oefenen.nl", "Het Begint met Taal", "Bibliotheek: Taalhuis en taalcafé"];
 
 export default {
   resources,
