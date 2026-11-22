@@ -121,7 +121,6 @@ export const raw = {
       searchPh: "Zoek, bijvoorbeeld 'app' of 'bibliotheek'",
       noResults: "Niets gevonden.",
       open: "Open",
-      report: "Meld een fout",
       searchNowTitle: "Zoek nu direct",
       levelsTitle: "Wat betekenen A0, A1, A2, B1 en B2?",
       levelsText: [
@@ -180,7 +179,6 @@ export const raw = {
       searchPh: "Search, for example 'app' or 'library'",
       noResults: "Nothing found.",
       open: "Open",
-      report: "Report a problem",
       searchNowTitle: "Search now",
       levelsTitle: "What do A0, A1, A2, B1 and B2 mean?",
       levelsText: [
@@ -239,7 +237,6 @@ export const raw = {
       searchPh: "ابحث، مثلًا «تطبيق» أو «مكتبة»",
       noResults: "لم يُعثر على شيء.",
       open: "افتح",
-      report: "أبلغ عن خطأ",
       searchNowTitle: "ابحث الآن",
       levelsTitle: "ماذا تعني A0 وA1 وA2 وB1 وB2؟",
       levelsText: [
@@ -298,7 +295,6 @@ export const raw = {
       searchPh: "Szukaj, na przykład „aplikacja” lub „biblioteka”",
       noResults: "Nic nie znaleziono.",
       open: "Otwórz",
-      report: "Zgłoś błąd",
       searchNowTitle: "Szukaj teraz",
       levelsTitle: "Co oznaczają A0, A1, A2, B1 i B2?",
       levelsText: [
@@ -357,7 +353,6 @@ export const raw = {
       searchPh: "Arayın, örneğin 'uygulama' veya 'kütüphane'",
       noResults: "Hiçbir şey bulunamadı.",
       open: "Aç",
-      report: "Hata bildir",
       searchNowTitle: "Hemen arayın",
       levelsTitle: "A0, A1, A2, B1 ve B2 ne anlama gelir?",
       levelsText: [

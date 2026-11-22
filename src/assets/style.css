@@ -162,8 +162,6 @@ details.lang a[aria-current] { background: var(--accent); color: var(--accent-in
 .row-tags .free { background: var(--free-bg); color: var(--free); font-weight: 700; }
 .row-tags .paid { font-weight: 700; }
 .row-go { position: absolute; top: 12px; inset-inline-end: 16px; font-size: 1.3rem; color: var(--accent); }
-.report { position: absolute; bottom: 4px; inset-inline-end: 4px; width: 40px; height: 40px; display: grid; place-items: center; color: var(--muted); text-decoration: none; font-size: .9rem; opacity: .7; }
-.report:hover { opacity: 1; }
 @media (min-width: 720px) { .rows.big { grid-template-columns: 1fr 1fr; } }
 .now { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .now a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--accent); text-decoration: none; font-weight: 600; }
@@ -184,7 +182,7 @@ details .row-main { background: var(--bg); }
 details > p { margin: 0; padding: 0 16px 14px; }
 
 @media print {
-  .nav, .search, .split .sky, .more, .top .lang, .sentence, .now, #share, .report, .find, .foot, .notice a { display: none !important; }
+  .nav, .search, .split .sky, .more, .top .lang, .sentence, .now, #share, .find, .foot, .notice a { display: none !important; }
   body { background: #fff; color: #000; font-size: 12pt; }
   details { border: 0; } details .rows, .rows { display: block; }
   .row-main { border: 0; border-bottom: 1px solid #ccc; border-radius: 0; padding: 8px 0; }

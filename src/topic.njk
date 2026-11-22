@@ -17,7 +17,7 @@ eleventyComputed:
 </header>
 {%- if t.resources.length %}
 <ul class="rows big">
-{%- for r in t.resources %}{{ row(r, p.lang, site.labels, ui, site.repo) }}{% endfor %}
+{%- for r in t.resources %}{{ row(r, p.lang, site.labels, ui) }}{% endfor %}
 </ul>
 <p class="quality" role="note"><span aria-hidden="true">⚠️</span> {{ ui.paidNote }} <a href="{{ p.about }}">{{ ui.moreInfo }}</a></p>
 {%- else %}
