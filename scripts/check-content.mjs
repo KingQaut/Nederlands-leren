@@ -33,7 +33,9 @@ for (const r of resources) {
   const e = (m) => errors.push(`${id}: ${m}`);
   if (!r.name) e("missing name");
   if (names.has(r.name)) e("duplicate name"); names.add(r.name);
-  if (!/^https:\/\/[^\s"]+$/.test(r.url || "")) e(`url must start with https:// (${r.url})`);
+  // Owner-curated entries may use http:// (some small providers have no working https).
+  if (!(r.curated ? /^https?:\/\/[^\s"]+$/ : /^https:\/\/[^\s"]+$/).test(r.url || "")) e(`url must start with https:// (${r.url})`);
+  if ("curated" in r && r.curated !== true) e("curated must be true or left out");
   if (urls.has(r.url)) e("duplicate url"); urls.add(r.url);
   if (!Array.isArray(r.topics) || !r.topics.length) e("needs at least one topic");
   else for (const t of r.topics) if (!topicKeys.has(t)) e(`unknown topic "${t}"`);
