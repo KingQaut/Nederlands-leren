@@ -48,6 +48,11 @@ export default {
       none: { nl: "nog geen", en: "no", levels: ["A0"] },
       little: { nl: "een beetje", en: "a little", levels: ["A1", "A2"] },
       good: { nl: "al redelijk", en: "quite a lot of", levels: ["B1", "B2"] },
+      // The same choice as an exact level, for people who know theirs (A0 = "nog geen").
+      a1: { nl: "A1", en: "A1", levels: ["A1"] },
+      a2: { nl: "A2", en: "A2", levels: ["A2"] },
+      b1: { nl: "B1", en: "B1", levels: ["B1"] },
+      b2: { nl: "B2", en: "B2", levels: ["B2"] },
     },
     // Second blank: how you want to learn. Which resources belong where is decided in library.js.
     ways: {
@@ -86,7 +91,13 @@ export default {
       explainedIn: "Uitleg in",
       searchNowTitle: "Zoek nu direct",
       levelsTitle: "Wat betekenen A0, A1, A2, B1 en B2?",
-      levelsText: "A0: u spreekt nog geen Nederlands. A1–A2: u kunt eenvoudige gesprekken voeren. B1: u redt zich in het dagelijks leven en op het werk. B2: u kunt studeren en werken in het Nederlands.",
+      levelsText: [
+        ["A0", "u spreekt nog geen Nederlands."],
+        ["A1", "u kent losse woorden en korte, eenvoudige zinnen."],
+        ["A2", "u kunt eenvoudige gesprekken voeren over dagelijkse dingen."],
+        ["B1", "u redt zich in het dagelijks leven en op het werk."],
+        ["B2", "u kunt studeren en werken in het Nederlands."],
+      ],
       tagline: "Vind snel een manier om Nederlands te leren",
       siteSearch: "Zoek op de site",
       siteSearchPh: "Zoek: app, taalcafé, bibliotheek…",
@@ -138,7 +149,13 @@ export default {
       explainedIn: "Explained in",
       searchNowTitle: "Search now",
       levelsTitle: "What do A0, A1, A2, B1 and B2 mean?",
-      levelsText: "A0: you don't speak Dutch yet. A1–A2: you can have simple conversations. B1: you manage in daily life and at work. B2: you can study and work in Dutch.",
+      levelsText: [
+        ["A0", "you don't speak Dutch yet."],
+        ["A1", "you know single words and short, simple sentences."],
+        ["A2", "you can have simple conversations about everyday things."],
+        ["B1", "you manage in daily life and at work."],
+        ["B2", "you can study and work in Dutch."],
+      ],
       tagline: "Quickly find a way to learn Dutch",
       siteSearch: "Search the site",
       siteSearchPh: "Search: app, language café, library…",

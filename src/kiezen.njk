@@ -31,6 +31,11 @@ eleventyComputed:
   </fieldset>
 </form>
 
+<section class="card levels" aria-labelledby="levels-h">
+  <h2 id="levels-h"><span aria-hidden="true">📶</span> {{ ui.levelsTitle }}</h2>
+  <ul class="lvl">{% for x in ui.levelsText %}<li><b>{{ x[0] }}</b>{{ x[1] }}</li>{% endfor %}</ul>
+</section>
+
 <section id="match" class="match" aria-live="polite" hidden>
   <div id="waiting">
     <p class="hint">{{ ui.waiting }}</p>
