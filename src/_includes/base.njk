@@ -1,14 +1,15 @@
 {%- set ui = site.ui[p.lang] -%}
 <!doctype html>
-<html lang="{{ p.lang }}">
+<html lang="{{ p.lang }}" dir="{{ p.dir or 'ltr' }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% if p.url == p.home %}{{ site.name }} – {{ ui.tagline }}{% else %}{{ title }} – {{ site.name }}{% endif %}</title>
 <meta name="description" content="{{ description or ui.description }}">
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-<link rel="alternate" hreflang="{{ p.lang }}" href="{{ site.url }}{{ page.url }}">
-<link rel="alternate" hreflang="{{ 'en' if p.lang == 'nl' else 'nl' }}" href="{{ site.url }}{{ p.alt }}">
+{%- for l in site.languages %}
+<link rel="alternate" hreflang="{{ l.code }}" href="{{ site.url }}{{ p.alts[l.code] }}">
+{%- endfor %}
 <meta property="og:title" content="{{ title }}">
 <meta property="og:description" content="{{ description or ui.description }}">
 <meta property="og:site_name" content="{{ site.name }}">
@@ -30,7 +31,15 @@
       <input type="search" id="q" placeholder="{{ ui.siteSearchPh }}" aria-label="{{ ui.siteSearch }}" autocomplete="off" data-empty="{{ ui.noHits }}">
       <ul id="hits" hidden></ul>
     </form>
-    <a class="lang" href="{{ p.alt }}" lang="{{ 'en' if p.lang == 'nl' else 'nl' }}" hreflang="{{ 'en' if p.lang == 'nl' else 'nl' }}">{{ ui.otherLang }}</a>
+    {#- Language menu: works without JavaScript (tap to open). #}
+    <details class="lang">
+      <summary aria-label="{{ ui.langMenu }}"><span aria-hidden="true">🌐</span> {% for l in site.languages %}{% if l.code == p.lang %}<span class="long">{{ l.name }}</span><span class="short">{{ l.short }}</span>{% endif %}{% endfor %}</summary>
+      <ul>
+      {%- for l in site.languages %}
+        <li><a href="{{ p.alts[l.code] }}" lang="{{ l.code }}" hreflang="{{ l.code }}"{% if l.dir %} dir="{{ l.dir }}"{% endif %}{% if l.code == p.lang %} aria-current="true"{% endif %}>{{ l.name }}</a></li>
+      {%- endfor %}
+      </ul>
+    </details>
   </div>
   <nav class="wrap nav" aria-label="Menu">
     {%- for s in library.sections %}
@@ -49,7 +58,8 @@
   <div class="wrap">
     <p>{{ ui.footer }}</p>
     <p>{% for s in library.sections %}<a href="{{ s.url[p.lang] }}">{{ s.title[p.lang] }}</a> · {% endfor %}<a href="{{ p.choose }}">{{ ui.chooseNav }}</a></p>
-    <p><a href="{{ p.about }}">{{ ui.about }}</a> · <a href="{{ p.alt }}">{{ ui.otherLang }}</a> · {{ ui.generated }}: {{ library.generated }}</p>
+    <p>{% for l in site.languages %}<a href="{{ p.alts[l.code] }}" lang="{{ l.code }}" hreflang="{{ l.code }}"{% if l.dir %} dir="{{ l.dir }}"{% endif %}>{{ l.name }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
+    <p><a href="{{ p.about }}">{{ ui.about }}</a> · {{ ui.generated }}: <span dir="ltr">{{ library.generated }}</span></p>
   </div>
 </footer>
 </body>

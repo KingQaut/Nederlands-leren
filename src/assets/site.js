@@ -3,7 +3,10 @@
 // all lists are shown in full.
 
 // ---- shared: typo-tolerant matching ------------------------------------------
-const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+// lower case, without accents (é → e) or Arabic vowel marks
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f\u064b-\u065f\u0670]/g, "");
+// split into words; works for every alphabet (Latin, Arabic, …)
+const wordsOf = (s) => s.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
 
 // true when a and b differ by at most one letter (typo tolerance)
 function near(a, b) {
@@ -34,7 +37,7 @@ function matches(text, tokens, words) {
   if (!q || !hits || !link) return;
   let index = null;
   const load = () => index || (index = fetch(link.href).then((r) => r.json()).then((items) =>
-    items.map((x) => ({ ...x, text: norm(x.t + " " + x.d), tokens: norm(x.t + " " + x.d).split(/[^a-z0-9]+/) }))
+    items.map((x) => ({ ...x, text: norm(x.t + " " + x.d), tokens: wordsOf(norm(x.t + " " + x.d)) }))
   ).catch(() => []));
   q.addEventListener("focus", load);
   q.addEventListener("input", async () => {
@@ -55,6 +58,14 @@ function matches(text, tokens, words) {
     if (e.key === "Enter") { const a = hits.querySelector("a"); if (a) location.href = a.href; }
   });
   document.addEventListener("click", (e) => { if (!e.target.closest(".search")) hits.hidden = true; });
+})();
+
+// ---- language menu: close it when tapping elsewhere or pressing Escape ---------
+(function () {
+  const menu = document.querySelector("details.lang");
+  if (!menu) return;
+  document.addEventListener("click", (e) => { if (!menu.contains(e.target)) menu.open = false; });
+  menu.addEventListener("keydown", (e) => { if (e.key === "Escape") { menu.open = false; menu.querySelector("summary").focus(); } });
 })();
 
 // ---- "help me choose" -----------------------------------------------------------
@@ -168,7 +179,7 @@ function matches(text, tokens, words) {
   const find = document.getElementById("find");
   const groups = [...document.querySelectorAll(".browse .group")];
   const none = document.getElementById("none");
-  const hit = (row, words) => matches(row.dataset.text, (row._t ||= row.dataset.text.split(/[^a-z0-9]+/)), words);
+  const hit = (row, words) => matches(row.dataset.text, (row._t ||= wordsOf(row.dataset.text)), words);
 
   find.addEventListener("input", () => {
     const words = norm(find.value).split(/\s+/).filter(Boolean);

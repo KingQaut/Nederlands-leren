@@ -11,7 +11,7 @@ export default function (cfg) {
   cfg.addFilter("json", (v) => JSON.stringify(v));
   // Text used by the search box: name + summary + labels, lower case, no accents.
   cfg.addFilter("searchText", (parts) =>
-    parts.filter(Boolean).join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+    parts.filter(Boolean).join(" ").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f\u064b-\u065f\u0670]/g, "")
   );
 
   return {

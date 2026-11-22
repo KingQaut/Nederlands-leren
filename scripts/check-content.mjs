@@ -1,10 +1,15 @@
-// Checks content/resources.js before it is published. Run: npm run check
+// Checks content/resources.js, the topics and all translations before they are published. Run: npm run check
 // Exits with an error (and a list of problems) if anything is wrong.
 import { resources, generated } from "../content/resources.js";
 import { sections } from "../content/topics.js";
-import site from "../src/_data/site.js";
+import { raw as site } from "../src/_data/site.js";
 
 const L = site.labels;
+const LANGS = site.languages.map((l) => l.code);
+// Dutch and English are required. Other languages are added only when the owner asks;
+// until then the site shows the English text, so a missing one is only reported.
+const REQUIRED = ["nl", "en"];
+const untranslated = new Map(); // language -> number of texts shown in English
 const errors = [], warnings = [];
 const topicKeys = new Set(sections.flatMap((s) => s.topics.map((t) => t.key)));
 const one = (set) => (v) => set.includes(v);
@@ -42,14 +47,43 @@ for (const r of resources) {
   else for (const l of r.langs) if (!ok.lang(l)) e(`unknown language "${l}" (add it to labels.lang in src/_data/site.js first)`);
   if (!ok.where(r.where)) e(`unknown where "${r.where}"`);
   if (!ok.trust(r.trust)) e(`unknown trust "${r.trust}"`);
-  for (const lang of ["nl", "en"]) {
+  for (const lang of LANGS) {
     const n = words(r.sum && r.sum[lang]);
-    if (!n) e(`missing ${lang} summary`);
+    if (!n && !REQUIRED.includes(lang)) untranslated.set(lang, (untranslated.get(lang) || 0) + 1);
+    else if (!n) e(`missing ${lang} summary`);
     else if (n > 35) e(`${lang} summary is ${n} words; keep it under 30`);
   }
   // Inburgering is deferred by the owner: no inburgering content for now.
   const text = [r.name, r.url, r.sum && r.sum.nl, r.sum && r.sum.en].join(" ").toLowerCase();
   if (/inburger|civic integration/.test(text)) e("mentions inburgering / civic integration, which is deferred");
+}
+
+// Every text in topics.js and site.js needs every site language.
+const need = (where, obj) => {
+  for (const l of LANGS) if (!obj || !String(obj[l] || "").trim()) {
+    if (REQUIRED.includes(l)) errors.push(`${where}: missing ${l} text`);
+    else untranslated.set(l, (untranslated.get(l) || 0) + 1);
+  }
+};
+for (const s of sections) {
+  for (const f of ["title", "kicker", "intro"]) need(`section "${s.key}" ${f}`, s[f]);
+  for (const t of s.topics) {
+    for (const f of ["title", "intro"]) need(`topic "${t.key}" ${f}`, t[f]);
+    if (t.liveText) need(`topic "${t.key}" liveText`, t.liveText);
+    for (const x of t.live || []) need(`topic "${t.key}" search button "${x.q}"`, x.t);
+  }
+}
+for (const group of ["cat", "cost", "fmt", "where", "trust", "speak", "ways"])
+  for (const [k, v] of Object.entries(L[group])) {
+    need(`labels.${group}.${k}`, v);
+    if (v.title) need(`labels.${group}.${k}.title`, v.title);
+  }
+for (const l of LANGS) {
+  if (!site.ui[l]) { errors.push(`site.js: no interface texts (ui.${l})`); continue; }
+  for (const k of Object.keys(site.ui.nl)) if (!(k in site.ui[l])) {
+    if (REQUIRED.includes(l)) errors.push(`site.js: ui.${l}.${k} is missing`);
+    else untranslated.set(l, (untranslated.get(l) || 0) + 1);
+  }
 }
 
 for (const s of sections) for (const t of s.topics) {
@@ -60,10 +94,11 @@ for (const s of sections) for (const t of s.topics) {
 for (const n of ["Oefenen.nl", "Het Begint met Taal", "Bibliotheek: Taalhuis en taalcafé"])
   if (!names.has(n)) errors.push(`"${n}" is shown on the home page (quickNames in src/_data/library.js) but is missing`);
 
+for (const [l, n] of untranslated) console.log(`note: ${n} text(s) not yet in "${l}"; the site shows English there.`);
 for (const w of warnings) console.log("warning:", w);
 if (errors.length) {
   console.error(`\n${errors.length} problem(s) in content/resources.js:`);
   for (const x of errors) console.error(" -", x);
   process.exit(1);
 }
-console.log(`OK: ${resources.length} resources, generated ${generated}.`);
+console.log(`OK: ${resources.length} resources in ${LANGS.length} languages (${LANGS.join(", ")}), generated ${generated}.`);

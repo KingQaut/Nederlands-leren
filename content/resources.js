@@ -1,4 +1,5 @@
-// All resources on the site. One entry per resource; texts in Dutch (nl) and English (en).
+// All resources on the site. One entry per resource; texts in Dutch (nl) and English (en),
+// plus Arabic (ar) and Polish (pl) where the owner has asked for them.
 // This file is meant to be (re)generated automatically; the site shows a disclaimer saying so.
 //
 // Fields
@@ -13,7 +14,8 @@
 //   where    national | online | amsterdam
 //   address  optional street address (local places only)
 //   trust    official | library | university | quality | ngo | community | app
-//   sum      one-line summary, max ~25 words
+//   sum      one-line summary, max ~25 words, in Dutch (nl) and English (en); Arabic (ar) and
+//            Polish (pl) only once the owner asks for them (until then the site shows English)
 
 export const generated = "2026-11-21";
 
@@ -27,6 +29,8 @@ export const resources = [
     sum: {
       nl: "Gratis oefenprogramma's voor Nederlands, lezen en schrijven, met veel beeld en geluid. Goed om mee te beginnen.",
       en: "Free practice programmes for Dutch, reading and writing, with lots of pictures and audio. A good place to start.",
+      ar: "برامج تدريب مجانية على الهولندية والقراءة والكتابة، مع الكثير من الصور والصوت. مكان جيد للبداية.",
+      pl: "Bezpłatne programy do ćwiczenia niderlandzkiego, czytania i pisania, z dużą ilością obrazków i dźwięku. Dobre na początek.",
     },
   },
   {
@@ -38,6 +42,8 @@ export const resources = [
     sum: {
       nl: "Gratis app met korte dagelijkse lessen Nederlands. Uitleg in veel talen; een betaalde versie is optioneel.",
       en: "Free app with short daily Dutch lessons. Explanations in many languages; a paid version is optional.",
+      ar: "تطبيق مجاني بدروس هولندية قصيرة يومية. الشرح بلغات كثيرة؛ والنسخة المدفوعة اختيارية.",
+      pl: "Bezpłatna aplikacja z krótkimi codziennymi lekcjami niderlandzkiego. Wyjaśnienia w wielu językach; płatna wersja jest opcjonalna.",
     },
   },
   {
@@ -49,6 +55,8 @@ export const resources = [
     sum: {
       nl: "Honderden gratis video's met uitleg over Nederlandse grammatica en woorden, in het Engels.",
       en: "Hundreds of free videos explaining Dutch grammar and vocabulary, in English.",
+      ar: "مئات الفيديوهات المجانية التي تشرح قواعد اللغة الهولندية ومفرداتها، باللغة الإنجليزية.",
+      pl: "Setki bezpłatnych filmów, które wyjaśniają gramatykę i słownictwo niderlandzkie, po angielsku.",
     },
   },
   {
@@ -60,6 +68,8 @@ export const resources = [
     sum: {
       nl: "Uitgebreide gratis website over Nederlandse grammatica, met oefeningen. Uitleg in het Engels.",
       en: "Extensive free website on Dutch grammar, with exercises. Explanations in English.",
+      ar: "موقع مجاني شامل عن قواعد اللغة الهولندية، مع تمارين. الشرح باللغة الإنجليزية.",
+      pl: "Obszerna, bezpłatna strona o gramatyce niderlandzkiej, z ćwiczeniami. Wyjaśnienia po angielsku.",
     },
   },
   {
@@ -71,6 +81,8 @@ export const resources = [
     sum: {
       nl: "Gratis oefeningen voor woorden, grammatica, lezen en luisteren, geordend per niveau.",
       en: "Free exercises for vocabulary, grammar, reading and listening, sorted by level.",
+      ar: "تمارين مجانية للمفردات والقواعد والقراءة والاستماع، مرتبة حسب المستوى.",
+      pl: "Bezpłatne ćwiczenia ze słownictwa, gramatyki, czytania i słuchania, uporządkowane według poziomu.",
     },
   },
   {
@@ -82,6 +94,8 @@ export const resources = [
     sum: {
       nl: "Bijna elke bibliotheek heeft een Taalhuis of taalcafé: gratis hulp en samen Nederlands praten. Vraag het bij de bibliotheek in de buurt.",
       en: "Almost every public library has a Taalhuis or language café: free help and Dutch conversation. Ask at your local library.",
+      ar: "في كل مكتبة عامة تقريبًا يوجد Taalhuis أو مقهى لغوي: مساعدة مجانية ومحادثة بالهولندية. اسأل في مكتبتك المحلية.",
+      pl: "Prawie każda biblioteka publiczna ma Taalhuis lub kawiarnię językową: bezpłatna pomoc i rozmowy po niderlandzku. Zapytaj w swojej bibliotece.",
     },
   },
   {
@@ -93,6 +107,8 @@ export const resources = [
     sum: {
       nl: "De Amsterdamse bibliotheek biedt taalcafés, een Taalhuis en gratis hulp bij Nederlands in vestigingen door de hele stad.",
       en: "Amsterdam's public library runs language cafés, a Taalhuis and free help with Dutch in branches across the city.",
+      ar: "تنظم مكتبة أمستردام العامة مقاهي لغوية وTaalhuis ومساعدة مجانية في الهولندية في فروعها في أنحاء المدينة.",
+      pl: "Biblioteka publiczna w Amsterdamie prowadzi kawiarnie językowe, Taalhuis i bezpłatną pomoc z niderlandzkim w filiach w całym mieście.",
     },
   },
   {
@@ -104,6 +120,8 @@ export const resources = [
     sum: {
       nl: "Landelijk netwerk van vrijwilligers: een taalmaatje of taalgroep om Nederlands te oefenen in het dagelijks leven.",
       en: "National network of volunteers: a language buddy or group to practise Dutch in everyday life.",
+      ar: "شبكة وطنية من المتطوعين: شريك لغوي أو مجموعة للتدرب على الهولندية في الحياة اليومية.",
+      pl: "Ogólnokrajowa sieć wolontariuszy: partner językowy lub grupa do ćwiczenia niderlandzkiego w codziennym życiu.",
     },
   },
   {
@@ -115,6 +133,8 @@ export const resources = [
     sum: {
       nl: "Officiële staatsexamens Nederlands op B1 of B2, vaak nodig voor studie of werk. Met oefenexamens.",
       en: "Official state exams in Dutch at B1 or B2, often needed for study or work. With practice exams.",
+      ar: "امتحانات الدولة الرسمية في الهولندية بمستوى B1 أو B2، وغالبًا ما تكون مطلوبة للدراسة أو العمل. مع امتحانات تجريبية.",
+      pl: "Oficjalne egzaminy państwowe z niderlandzkiego na poziomie B1 lub B2, często potrzebne do nauki lub pracy. Z egzaminami próbnymi.",
     },
   },
   {
@@ -126,6 +146,8 @@ export const resources = [
     sum: {
       nl: "Taalcentrum van de Universiteit van Amsterdam: betaalde cursussen Nederlands van beginner tot gevorderd.",
       en: "Language centre of the University of Amsterdam: paid Dutch courses from beginner to advanced.",
+      ar: "مركز اللغات في جامعة أمستردام: دورات هولندية مدفوعة من المبتدئ إلى المتقدم.",
+      pl: "Centrum językowe Uniwersytetu Amsterdamskiego: płatne kursy niderlandzkiego od początkującego do zaawansowanego.",
     },
   },
   {
@@ -137,6 +159,8 @@ export const resources = [
     sum: {
       nl: "Hulp voor wie moeite heeft met lezen en schrijven, ook als u het Latijnse alfabet nog leert.",
       en: "Help for people who find reading and writing hard, including if you are still learning the Latin alphabet.",
+      ar: "مساعدة لمن يجد القراءة والكتابة صعبة، وأيضًا لمن لا يزال يتعلم الحروف اللاتينية.",
+      pl: "Pomoc dla osób, którym trudno czytać i pisać, także jeśli dopiero uczysz się alfabetu łacińskiego.",
     },
   },
   {
@@ -148,6 +172,8 @@ export const resources = [
     sum: {
       nl: "Boeken in eenvoudig Nederlands, gekozen door de bibliotheek. Te leen bij de bibliotheek.",
       en: "Books in easy Dutch, chosen by public libraries. Borrow them at the library.",
+      ar: "كتب بالهولندية السهلة تختارها المكتبات العامة. استعرها من المكتبة.",
+      pl: "Książki w łatwym niderlandzkim, wybrane przez biblioteki publiczne. Wypożycz je w bibliotece.",
     },
   },
   {
@@ -159,6 +185,8 @@ export const resources = [
     sum: {
       nl: "Samen voorlezen met baby's en peuters, met een gratis koffertje boeken van de bibliotheek.",
       en: "Reading together with babies and toddlers, with a free case of books from the library.",
+      ar: "القراءة معًا مع الرضّع والأطفال الصغار، مع حقيبة كتب مجانية من المكتبة.",
+      pl: "Wspólne czytanie z niemowlętami i małymi dziećmi, z bezpłatną walizeczką książek z biblioteki.",
     },
   },
   {
@@ -170,6 +198,8 @@ export const resources = [
     sum: {
       nl: "Gratis korte educatieve video's van de publieke omroep. Goed om samen met uw kinderen Nederlands te leren.",
       en: "Free short educational videos from Dutch public broadcasting. Good for learning Dutch together with your children.",
+      ar: "فيديوهات تعليمية قصيرة ومجانية من الإعلام العام الهولندي. جيدة لتعلّم الهولندية مع أطفالك.",
+      pl: "Bezpłatne, krótkie filmy edukacyjne holenderskiej telewizji publicznej. Dobre do nauki niderlandzkiego razem z dziećmi.",
     },
   },
   {
@@ -181,6 +211,8 @@ export const resources = [
     sum: {
       nl: "App met korte video's van echte Nederlanders en oefeningen voor nieuwe woorden. Gratis versie, betaald voor meer.",
       en: "App with short videos of real Dutch speakers and vocabulary exercises. Free version, paid for more.",
+      ar: "تطبيق بفيديوهات قصيرة لهولنديين حقيقيين وتمارين للمفردات. نسخة مجانية، ومدفوعة للمزيد.",
+      pl: "Aplikacja z krótkimi filmami prawdziwych Holendrów i ćwiczeniami ze słownictwa. Wersja bezpłatna, płatna daje więcej.",
     },
   },
   {
@@ -192,6 +224,8 @@ export const resources = [
     sum: {
       nl: "Leer nieuwe woorden met plaatjes, vijf minuten per dag. Gratis versie, betaald voor meer tijd.",
       en: "Learn new words with pictures, five minutes a day. Free version, paid for more time.",
+      ar: "تعلّم كلمات جديدة بالصور، خمس دقائق في اليوم. نسخة مجانية، ومدفوعة لوقت أطول.",
+      pl: "Ucz się nowych słów z obrazkami, pięć minut dziennie. Wersja bezpłatna, płatna daje więcej czasu.",
     },
   },
   {
@@ -203,6 +237,8 @@ export const resources = [
     sum: {
       nl: "Betaalde app met lessen die opbouwen, met spraakherkenning om uitspraak te oefenen. Eerste les gratis.",
       en: "Paid app with lessons that build up, with speech recognition to practise pronunciation. First lesson free.",
+      ar: "تطبيق مدفوع بدروس متدرجة، مع التعرف على الصوت للتدرب على النطق. الدرس الأول مجاني.",
+      pl: "Płatna aplikacja z lekcjami krok po kroku i rozpoznawaniem mowy do ćwiczenia wymowy. Pierwsza lekcja za darmo.",
     },
   },
   {
@@ -214,6 +250,8 @@ export const resources = [
     sum: {
       nl: "App om een taalpartner te vinden: u helpt iemand met uw taal, die persoon helpt u met Nederlands.",
       en: "App to find a language partner: you help someone with your language, they help you with Dutch.",
+      ar: "تطبيق للعثور على شريك لغوي: تساعد شخصًا بلغتك، ويساعدك هو بالهولندية.",
+      pl: "Aplikacja do znalezienia partnera językowego: pomagasz komuś w swoim języku, a ta osoba pomaga Ci z niderlandzkim.",
     },
   },
   {
@@ -225,6 +263,8 @@ export const resources = [
     sum: {
       nl: "Gratis online lessen Nederlands met filmpjes over het dagelijks leven, voor beginners.",
       en: "Free online Dutch lessons with videos about everyday life, for beginners.",
+      ar: "دروس هولندية مجانية عبر الإنترنت مع فيديوهات عن الحياة اليومية، للمبتدئين.",
+      pl: "Bezpłatne lekcje niderlandzkiego online z filmami o codziennym życiu, dla początkujących.",
     },
   },
   {
@@ -236,6 +276,8 @@ export const resources = [
     sum: {
       nl: "Gratis Nederlands oefenen met nieuws, filmpjes en series. Uit Vlaanderen, dus soms Vlaamse woorden.",
       en: "Free Dutch practice with news, videos and series. From Flanders, so sometimes Flemish words.",
+      ar: "تدرّب مجانًا على الهولندية بالأخبار والفيديوهات والمسلسلات. من فلاندر، لذلك توجد أحيانًا كلمات فلمنكية.",
+      pl: "Bezpłatna nauka niderlandzkiego z wiadomościami, filmami i serialami. Z Flandrii, więc czasem pojawiają się słowa flamandzkie.",
     },
   },
   {
@@ -247,6 +289,8 @@ export const resources = [
     sum: {
       nl: "Het nieuws, uitgelegd voor kinderen. Duidelijk en langzaam Nederlands, ook goed voor volwassenen.",
       en: "The news, explained for children. Clear, slow Dutch that also works well for adults.",
+      ar: "الأخبار مشروحة للأطفال. هولندية واضحة وبطيئة، مناسبة للكبار أيضًا.",
+      pl: "Wiadomości wyjaśnione dla dzieci. Wyraźny, powolny niderlandzki, dobry także dla dorosłych.",
     },
   },
   {
@@ -258,6 +302,8 @@ export const resources = [
     sum: {
       nl: "Straatinterviews in echt Nederlands, met Nederlandse en Engelse ondertitels.",
       en: "Street interviews in real Dutch, with Dutch and English subtitles.",
+      ar: "مقابلات في الشارع بهولندية حقيقية، مع ترجمة مكتوبة بالهولندية والإنجليزية.",
+      pl: "Wywiady uliczne w prawdziwym niderlandzkim, z napisami po niderlandzku i angielsku.",
     },
   },
   {
@@ -269,6 +315,8 @@ export const resources = [
     sum: {
       nl: "Erkend certificaat Nederlands van de Nederlandse Taalunie, op verschillende niveaus. Met oefenexamens.",
       en: "Recognised Dutch certificate from the Dutch Language Union, at several levels. With practice exams.",
+      ar: "شهادة معترف بها في الهولندية من اتحاد اللغة الهولندية، بعدة مستويات. مع امتحانات تجريبية.",
+      pl: "Uznawany certyfikat z niderlandzkiego Unii Języka Niderlandzkiego, na kilku poziomach. Z egzaminami próbnymi.",
     },
   },
   {
@@ -280,6 +328,8 @@ export const resources = [
     sum: {
       nl: "Betaalbare avond- en dagcursussen Nederlands in Amsterdam en online, van beginner tot gevorderd.",
       en: "Affordable evening and daytime Dutch courses in Amsterdam and online, from beginner to advanced.",
+      ar: "دورات هولندية مسائية ونهارية بأسعار معقولة في أمستردام وعبر الإنترنت، من المبتدئ إلى المتقدم.",
+      pl: "Niedrogie wieczorowe i dzienne kursy niderlandzkiego w Amsterdamie i online, od początkującego do zaawansowanego.",
     },
   },
   {
@@ -291,6 +341,8 @@ export const resources = [
     sum: {
       nl: "Opleidingen Nederlands als tweede taal (NT2) bij de beroepsschool van Amsterdam, ook als voorbereiding op studie.",
       en: "Dutch as a second language (NT2) programmes at Amsterdam's vocational college, also to prepare for further study.",
+      ar: "برامج الهولندية كلغة ثانية (NT2) في كلية التعليم المهني في أمستردام، وأيضًا للتحضير لدراسة لاحقة.",
+      pl: "Programy niderlandzkiego jako drugiego języka (NT2) w szkole zawodowej w Amsterdamie, także jako przygotowanie do dalszej nauki.",
     },
   },
   {
@@ -302,6 +354,8 @@ export const resources = [
     sum: {
       nl: "Een vrijwilliger die regelmatig met u afspreekt om Nederlands te praten, ook in Amsterdam.",
       en: "A volunteer who meets you regularly to speak Dutch, also in Amsterdam.",
+      ar: "متطوع يلتقي بك بانتظام لتتحدثا بالهولندية، وأيضًا في أمستردام.",
+      pl: "Wolontariusz, który regularnie spotyka się z Tobą, żeby rozmawiać po niderlandzku, także w Amsterdamie.",
     },
   },
   {
@@ -313,6 +367,8 @@ export const resources = [
     sum: {
       nl: "E-books en luisterboeken, ook in makkelijk Nederlands. Gratis met een bibliotheekpas.",
       en: "E-books and audiobooks, including easy Dutch. Free with a library card.",
+      ar: "كتب إلكترونية وكتب صوتية، منها كتب بالهولندية السهلة. مجانية مع بطاقة المكتبة.",
+      pl: "E-booki i audiobooki, także w łatwym niderlandzkim. Bezpłatnie z kartą biblioteczną.",
     },
   },
   {
@@ -324,6 +380,8 @@ export const resources = [
     sum: {
       nl: "Gratis hulp van een vrijwilliger bij lezen, schrijven en praten, via bibliotheken en Taalhuizen.",
       en: "Free help from a volunteer with reading, writing and speaking, through libraries and Taalhuizen.",
+      ar: "مساعدة مجانية من متطوع في القراءة والكتابة والتحدث، عبر المكتبات وTaalhuizen.",
+      pl: "Bezpłatna pomoc wolontariusza w czytaniu, pisaniu i mówieniu, przez biblioteki i Taalhuizen.",
     },
   },
   {
@@ -335,6 +393,8 @@ export const resources = [
     sum: {
       nl: "Een vrijwilliger komt twintig weken bij u thuis voorlezen aan uw kinderen, en laat zien hoe u dat zelf doet.",
       en: "A volunteer comes to your home for twenty weeks to read to your children, and shows you how to do it yourself.",
+      ar: "يأتي متطوع إلى بيتك لمدة عشرين أسبوعًا ليقرأ لأطفالك، ويريك كيف تفعل ذلك بنفسك.",
+      pl: "Wolontariusz przychodzi do Twojego domu przez dwadzieścia tygodni, czyta Twoim dzieciom i pokazuje, jak robić to samemu.",
     },
   },
   {
@@ -346,6 +406,8 @@ export const resources = [
     sum: {
       nl: "Filmpjes en liedjes voor peuters van de publieke omroep. Leer samen met uw kind eenvoudige woorden.",
       en: "Videos and songs for toddlers from Dutch public broadcasting. Learn simple words together with your child.",
+      ar: "فيديوهات وأغانٍ للأطفال الصغار من الإعلام العام الهولندي. تعلّم كلمات بسيطة مع طفلك.",
+      pl: "Filmy i piosenki dla małych dzieci z holenderskiej telewizji publicznej. Ucz się prostych słów razem z dzieckiem.",
     },
   },
   {
@@ -357,6 +419,8 @@ export const resources = [
     sum: {
       nl: "Intensieve privélessen Nederlands, online of op locatie in Vught. Duur, maar snel resultaat.",
       en: "Intensive private Dutch lessons, online or on site in Vught. Expensive, but fast results.",
+      ar: "دروس هولندية خاصة ومكثفة، عبر الإنترنت أو حضوريًا في فوخت (Vught). غالية، لكن النتائج سريعة.",
+      pl: "Intensywne prywatne lekcje niderlandzkiego, online lub na miejscu w Vught. Drogie, ale szybkie efekty.",
     },
   },
   {
@@ -368,6 +432,8 @@ export const resources = [
     sum: {
       nl: "YouTube-kanaal met korte, duidelijke lessen over woorden, grammatica en uitspraak.",
       en: "YouTube channel with short, clear lessons on vocabulary, grammar and pronunciation.",
+      ar: "قناة على يوتيوب بدروس قصيرة وواضحة عن المفردات والقواعد والنطق.",
+      pl: "Kanał na YouTube z krótkimi, jasnymi lekcjami słownictwa, gramatyki i wymowy.",
     },
   },
   {
@@ -379,6 +445,8 @@ export const resources = [
     sum: {
       nl: "Het YouTube-kanaal van Learndutch.org: honderden lessen grammatica en woorden, stap voor stap, met uitleg in het Engels.",
       en: "The YouTube channel of Learndutch.org: hundreds of grammar and vocabulary lessons, step by step, explained in English.",
+      ar: "قناة Learndutch.org على يوتيوب: مئات الدروس في القواعد والمفردات، خطوة بخطوة، مع شرح بالإنجليزية.",
+      pl: "Kanał Learndutch.org na YouTube: setki lekcji gramatyki i słownictwa krok po kroku, z wyjaśnieniami po angielsku.",
     },
   },
   {
@@ -390,6 +458,8 @@ export const resources = [
     sum: {
       nl: "Gratis video's met woorden en zinnen voor elke dag. Het kanaal verwijst ook naar een betaalde website.",
       en: "Free videos with words and phrases for every day. The channel also points to a paid website.",
+      ar: "فيديوهات مجانية بكلمات وعبارات للحياة اليومية. تحيل القناة أيضًا إلى موقع مدفوع.",
+      pl: "Bezpłatne filmy ze słowami i zwrotami na co dzień. Kanał odsyła też do płatnej strony.",
     },
   },
   {
@@ -401,6 +471,8 @@ export const resources = [
     sum: {
       nl: "Lessen van een docent Nederlands uit België, voor beginners. Hij spreekt met een Vlaams accent.",
       en: "Lessons from a Dutch teacher from Belgium, for beginners. He speaks with a Flemish accent.",
+      ar: "دروس من معلّم هولندية من بلجيكا، للمبتدئين. يتحدث بلهجة فلمنكية.",
+      pl: "Lekcje nauczyciela niderlandzkiego z Belgii, dla początkujących. Mówi z flamandzkim akcentem.",
     },
   },
   {
@@ -412,6 +484,8 @@ export const resources = [
     sum: {
       nl: "Korte nieuwsfilmpjes voor kinderen, in duidelijk Nederlands. Ook goed voor volwassenen die oefenen met luisteren.",
       en: "Short news clips for children, in clear Dutch. Also good for adults practising listening.",
+      ar: "مقاطع أخبار قصيرة للأطفال، بهولندية واضحة. جيدة أيضًا للكبار للتدرب على الاستماع.",
+      pl: "Krótkie wiadomości dla dzieci, w wyraźnym niderlandzkim. Dobre także dla dorosłych do ćwiczenia słuchania.",
     },
   },
 ];
