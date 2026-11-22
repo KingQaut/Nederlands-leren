@@ -45,7 +45,7 @@ eleventyComputed:
 <p>لا حساب، ولا ملفات تعريف الارتباط (cookies)، ولا إعلانات. ما تختاره يبقى في متصفحك فقط.</p>
 <h2>الإبلاغ عن خطأ</h2>
 <p>هل هناك شيء غير صحيح؟ استخدم «أبلغ عن خطأ» عند المصدر، أو <a href="{{ site.repo }}/issues/new">أبلغ عنه هنا</a>.</p>
-{% else %}
+{% elif p.lang == "pl" %}
 <p class="intro">NederlandsLeren to bezpłatny przewodnik dla osób, które niedawno przyjechały do Holandii. Strona nie prowadzi lekcji, ale wskazuje istniejące aplikacje, kawiarnie językowe, kursy i egzaminy.</p>
 <h2>Utworzone automatycznie</h2>
 <p>Lista źródeł i tłumaczenia są tworzone automatycznie. Nikt nie sprawdza ich ręcznie, więc mogą zawierać błędy, a treść może być nieaktualna. Ceny, godziny i warunki mogą się zmieniać: zawsze sprawdzaj stronę organizatora. To ona jest wiążąca.</p>
@@ -58,4 +58,17 @@ eleventyComputed:
 <p>Bez konta, bez plików cookie, bez reklam. To, co wybierzesz, zostaje w Twojej przeglądarce.</p>
 <h2>Zgłoś błąd</h2>
 <p>Coś się nie zgadza? Użyj „Zgłoś błąd” przy źródle albo <a href="{{ site.repo }}/issues/new">zgłoś to tutaj</a>.</p>
+{% elif p.lang == "tr" %}
+<p class="intro">NederlandsLeren, Hollanda'ya yeni gelenler için ücretsiz bir rehberdir. Site ders vermez; mevcut uygulamalara, dil kafelere, kurslara ve sınavlara yol gösterir.</p>
+<h2>Otomatik olarak oluşturuldu</h2>
+<p>Kaynak listesi ve çeviriler otomatik olarak oluşturulur. Kimse bunları elle kontrol etmez, bu yüzden hata içerebilir ve içerik güncel olmayabilir. Fiyatlar, saatler ve koşullar değişebilir: her zaman sağlayıcının web sitesine bakın. Geçerli olan odur.</p>
+<p>Bu site hukuki veya kişisel tavsiye vermez.</p>
+<h2>Hangi kaynaklar var?</h2>
+<p>Ücretsiz kaynaklar ve fiyatı ile seviyesi açıkça belirtilen ücretli kaynaklar. Burada yer almak için kimse para ödemez.</p>
+<h2>Kalite</h2>
+<p>Kursların, okulların, uygulamaların ve web sitelerinin kalitesi kontrol edilmemiştir. Bir kaynağın burada yer alması, tavsiye edildiği anlamına gelmez. Ödeme yapmadan önce seviyeyi, öğretmeni, ders sayısını ve toplam fiyatı sorun; deneme dersine katılıp katılamayacağınızı da öğrenin. <a href="https://www.nrto.nl/">NRTO</a> gibi bir kalite belgesi seçim yapmanıza yardımcı olabilir.</p>
+<h2>Gizlilik</h2>
+<p>Hesap yok, çerez yok, reklam yok. Seçtikleriniz yalnızca kendi tarayıcınızda kalır.</p>
+<h2>Hata bildirin</h2>
+<p>Bir şey yanlış mı? Kaynağın yanındaki "Hata bildir" düğmesini kullanın veya <a href="{{ site.repo }}/issues/new">buradan bildirin</a>.</p>
 {% endif %}
