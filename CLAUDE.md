@@ -10,7 +10,7 @@ Product requirements document (a Claude doc, read it with the docs tools): https
 ## Hard requirements
 
 - **€0 running cost, minimal maintenance.** No database, CMS, server, paid service or domain. Static Eleventy site on GitHub Pages (free address `kingqaut.github.io/Nederlands-leren`).
-- **Content is generated automatically**, not curated by hand; every page shows a disclaimer saying so. Generation runs on the owner's Claude subscription (a monthly scheduled Claude Code task follows `content/UPDATING.md`: it checks and updates `content/resources.js` on a branch, runs the link check there, and only then moves it to `main`).
+- **Content is generated automatically**, not curated by hand; every page shows a disclaimer saying so. Generation runs on the owner's Claude subscription. The owner starts an update by hand every once in a while (no scheduled task; a disabled one exists). An update follows `content/UPDATING.md`: it checks and updates `content/resources.js` on a branch, runs the link check there, and only then moves it to `main`).
 - **Audience:** newcomers with limited Dutch, often on a cheap phone. Plain language, large tap targets, WCAG 2.2 AA, no cookies or tracking.
 - **Coverage:** national and online resources, plus Amsterdam for local listings.
 - **Paid courses, schools and apps** may be listed if they have a published price and stated levels; no quality mark is required (owner's decision). The site does not check quality and says so: on the About page and in a note on every topic page or help-me-choose result that includes a paid resource.
@@ -44,5 +44,5 @@ Modelled on indiawijzer.nl. The home page has two big coloured halves, **Online 
 ## Roadmap (from the PRD)
 
 1. Evening 1 (done): site, directory, filters, search, disclaimer, Dutch + English, publishing.
-2. Evenings 2–3: monthly content update (done, see `content/UPDATING.md`), guided finder (done as Help me choose), more "search now" buttons.
+2. Evenings 2–3: content update procedure (done, see `content/UPDATING.md`; run by hand), guided finder (done as Help me choose), more "search now" buttons.
 3. Evening 4: Arabic (RTL), Ukrainian, Turkish, Tigrinya; accessibility pass; more Amsterdam listings.

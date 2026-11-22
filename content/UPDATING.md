@@ -1,7 +1,7 @@
-# Monthly content update – instructions
+# Content update – instructions
 
-This file tells the monthly automatic update (a scheduled Claude Code task on the owner's
-Claude subscription) exactly what to do. Read `CLAUDE.md` first; its hard requirements apply.
+The owner starts a content update by hand every once in a while, by asking a Claude Code
+session to "follow content/UPDATING.md". This file tells that session exactly what to do. Read `CLAUDE.md` first; its hard requirements apply.
 
 ## Goal
 
@@ -11,7 +11,7 @@ generated automatically; the site already says so on every page.
 
 ## Steps
 
-1. **Start from the latest `main`.** Work on a new branch `content-update-YYYY-MM`.
+1. **Start from the latest `main`.** Work on a new branch `content-update-YYYY-MM-DD`.
 2. **Check every existing resource** with web search and by reading its page (not just a
    search snippet): is it still there, still free or paid as listed, still the same levels,
    formats and languages? Fix the entry, or remove it if it is gone or no longer fits.
