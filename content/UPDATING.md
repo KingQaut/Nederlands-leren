@@ -37,7 +37,7 @@ generated automatically; the site already says so on every page.
   `content/topics.js`. Do not change `topics.js`, templates or styles in this task.
 - **Summaries:** plain language at CEFR A2/B1, max ~25 words, no marketing words, one in
   Dutch (`nl`) and one in English (`en`). Say "free" only when a real free version exists.
-- **No other translations.** Do not write Arabic (`ar`), Polish (`pl`), Turkish (`tr`) or other summaries for
+- **No other translations.** Do not write Arabic (`ar`), Polish (`pl`), Turkish (`tr`), French (`fr`), Spanish (`es`) or other summaries for
   new resources; the owner asks for translations separately, and until then the site shows
   the English text. If you change an existing summary, remove that resource's other-language
   summaries (they would be out of date) and list those resources in the report.
