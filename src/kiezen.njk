@@ -40,7 +40,7 @@ eleventyComputed:
   <div id="waiting">
     <p class="hint">{{ ui.waiting }}</p>
     <ul class="rows">
-    {%- for r in library.quick %}{{ row(r, p.lang, L, ui, site.repo) }}{% endfor %}
+    {%- for r in library.quick %}{{ row(r, p.lang, L, ui) }}{% endfor %}
     </ul>
   </div>
   <div id="results" hidden>
@@ -67,7 +67,7 @@ eleventyComputed:
   <details class="group" data-way="{{ key }}">
     <summary><i aria-hidden="true">{{ w.icon }}</i> {{ w.title[p.lang] }} <span class="n">{{ list.length }}</span></summary>
     <ul class="rows">
-    {%- for r in list %}{{ row(r, p.lang, L, ui, site.repo) }}{% endfor %}
+    {%- for r in list %}{{ row(r, p.lang, L, ui) }}{% endfor %}
     </ul>
   </details>
   {%- endif %}

@@ -1,5 +1,5 @@
 {#- One resource as a row: the whole row links to the provider. -#}
-{%- macro row(r, lang, L, ui, repo) -%}
+{%- macro row(r, lang, L, ui) -%}
 <li class="row" data-ways="{{ r.ways | join(' ') }}" data-levels="{{ r.levels | join(' ') }}" data-rank="{{ r.rank }}" data-cost="{{ r.cost }}"
     data-text="{{ [r.name, r.sum.nl, r.sum.en, r.sum[lang], L.cat[r.cat].nl, L.cat[r.cat].en, L.cat[r.cat][lang], L.where[r.where].nl, L.where[r.where].en, L.where[r.where][lang]] | searchText }}">
   <a class="row-main" href="{{ r.url }}" rel="noopener">
@@ -14,6 +14,5 @@
     </span>
     <span class="row-go" aria-hidden="true">↗</span>
   </a>
-  <a class="report" href="{{ repo }}/issues/new?title={{ ('Problem: ' + r.name) | urlencode }}" rel="noopener" aria-label="{{ ui.report }}: {{ r.name }}" title="{{ ui.report }}">⚑</a>
 </li>
 {%- endmacro -%}
