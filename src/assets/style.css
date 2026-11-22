@@ -31,6 +31,8 @@ i { font-style: normal; }
 .bar { display: flex; align-items: center; gap: 12px; padding-top: 10px; padding-bottom: 6px; flex-wrap: wrap; }
 .logo { display: flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; font-size: 1.3rem; letter-spacing: -.02em; }
 .logo span { color: var(--ink); } .logo b { color: var(--accent); }
+/* QR code with the site address, as big as the logo; always black on white so it scans in dark mode too */
+.qr { width: 30px; height: 30px; flex: none; border-radius: 2px; margin-left: -4px; }
 .lang { font-weight: 600; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 .notice { background: var(--note); color: var(--note-ink); font-size: .85rem; padding: 6px 0; }
 .notice a { color: inherit; font-weight: 600; }
