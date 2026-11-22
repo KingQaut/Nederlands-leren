@@ -609,6 +609,11 @@ export const resources = [
     sum: {
       nl: "Gratis lessen Nederlands in Amsterdam, van maandag tot en met donderdag van 19.30 tot 21.30 uur. Niveau A1 tot B1.",
       en: "Free Dutch classes in Amsterdam, Monday to Thursday from 19:30 to 21:30. Level A1 to B1.",
+      ar: "دروس مجانية في اللغة الهولندية في أمستردام، من الاثنين إلى الخميس من الساعة 19:30 إلى 21:30. المستوى من A1 إلى B1.",
+      pl: "Bezpłatne lekcje niderlandzkiego w Amsterdamie, od poniedziałku do czwartku w godz. 19:30–21:30. Poziom od A1 do B1.",
+      tr: "Amsterdam'da ücretsiz Hollandaca dersleri, pazartesiden perşembeye 19.30–21.30 arası. Seviye A1 ile B1 arası.",
+      fr: "Cours de néerlandais gratuits à Amsterdam, du lundi au jeudi de 19 h 30 à 21 h 30. Niveau A1 à B1.",
+      es: "Clases gratuitas de neerlandés en Ámsterdam, de lunes a jueves de 19:30 a 21:30. Nivel de A1 a B1.",
     },
   },
 ];
