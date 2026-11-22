@@ -40,7 +40,11 @@ const sections = rawSections.map((s) => {
     section: s.key,
     url: Object.fromEntries(LANGS.map((l) => [l, `${url[l]}${t.slug[l]}/`])),
     resources: resources.filter((r) => r.topics.includes(t.key)),
-    live: t.live || [],
+    // "search now" buttons search Google, or YouTube when `yt: true`.
+    live: (t.live || []).map((x) => ({
+      ...x,
+      href: (x.yt ? "https://www.youtube.com/results?search_query=" : "https://www.google.com/search?q=") + encodeURIComponent(x.q),
+    })),
     hasPaid: resources.some((r) => r.topics.includes(t.key) && r.cost === "paid"),
   }));
   return { ...s, url, topics };
@@ -60,8 +64,8 @@ const topicPages = allTopics.flatMap((t) =>
 );
 
 // "Search now" buttons on the help-me-choose page, by way of learning.
-const wayOfTopic = { talk: "people", course: "course", onlineclass: "course" };
-const searchNow = allTopics.flatMap((t) => (t.live || []).map((x) => ({ ...x, way: wayOfTopic[t.key] || "course" })));
+const wayOfTopic = { talk: "people", course: "course", onlineclass: "course", youtube: "phone" };
+const searchNow = allTopics.flatMap((t) => t.live.map((x) => ({ ...x, way: wayOfTopic[t.key] || "course" })));
 
 // Shown as "start today, for free".
 const quickNames = ["Oefenen.nl", "Het Begint met Taal", "Bibliotheek: Taalhuis en taalcafé"];

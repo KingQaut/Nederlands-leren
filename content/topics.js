@@ -1,6 +1,7 @@
 // The two sections of the site and their topics (Dutch + English).
 // Each resource in resources.js says which topics it belongs to (field `topics`).
-// `live` = "search now" buttons: a live search for things that change every week.
+// `live` = "search now" buttons: a live Google search for things that change every week
+// (`yt: true` searches YouTube instead). `liveText` optionally replaces the text above them.
 
 export const sections = [
   {
@@ -40,6 +41,24 @@ export const sections = [
           nl: "Kijken en luisteren: video's met uitleg, en korte filmpjes in eenvoudig Nederlands.",
           en: "Watch and listen: videos with explanations, and short clips in simple Dutch.",
         },
+      },
+      {
+        key: "youtube", icon: "▶️",
+        slug: { nl: "youtube-kanalen", en: "youtube-channels" },
+        title: { nl: "YouTube-kanalen", en: "YouTube channels" },
+        intro: {
+          nl: "Gratis kanalen op YouTube: lessen met uitleg, echt Nederlands op straat, en gewone Nederlandse tv. Zet de ondertitels aan.",
+          en: "Free YouTube channels: lessons with explanations, real Dutch on the street, and ordinary Dutch TV. Turn on the subtitles.",
+        },
+        liveText: {
+          nl: "Van deze kanalen weten we het precieze adres niet zeker. Deze knoppen zoeken ze op YouTube, zodat u niet op een verkeerd kanaal komt.",
+          en: "For these channels we are not sure of the exact address. These buttons search for them on YouTube, so you do not end up on a wrong channel.",
+        },
+        live: [
+          { yt: true, q: "Learn Dutch with Videos", t: { nl: "Learn Dutch with Videos (alledaags Nederlands)", en: "Learn Dutch with Videos (everyday Dutch)" } },
+          { yt: true, q: "Het Klokhuis", t: { nl: "Het Klokhuis (kinder-tv, ook goed voor volwassenen)", en: "Het Klokhuis (children's TV, good for adults too)" } },
+          { yt: true, q: "LUBACH RTL", t: { nl: "LUBACH (satire op RTL 4, voor gevorderden)", en: "LUBACH (satire on RTL 4, for advanced learners)" } },
+        ],
       },
       {
         key: "onlineclass", icon: "👩‍🏫",

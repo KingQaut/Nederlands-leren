@@ -27,10 +27,10 @@ eleventyComputed:
 {%- endif %}
 {%- if t.live.length %}
 <h2>{{ ui.live }}</h2>
-<p class="hint">{{ ui.liveText }}</p>
+<p class="hint">{{ t.liveText[p.lang] if t.liveText else ui.liveText }}</p>
 <ul class="now">
 {%- for x in t.live %}
-  <li><a href="https://www.google.com/search?q={{ x.q | urlencode }}" rel="noopener">🔎 {{ x.t[p.lang] }}</a></li>
+  <li><a href="{{ x.href }}" rel="noopener">🔎 {{ x.t[p.lang] }}</a></li>
 {%- endfor %}
 </ul>
 {%- endif %}

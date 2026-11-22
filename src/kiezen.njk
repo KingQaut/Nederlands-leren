@@ -45,7 +45,7 @@ eleventyComputed:
     <p id="paid-note" class="quality" role="note" hidden><span aria-hidden="true">⚠️</span> {{ ui.paidNote }} <a href="{{ p.about }}">{{ ui.moreInfo }}</a></p>
     <ul class="now">
     {%- for s in library.searchNow %}
-      <li data-way="{{ s.way }}"><a href="https://www.google.com/search?q={{ s.q | urlencode }}" rel="noopener">🔎 {{ s.t[p.lang] }}</a></li>
+      <li data-way="{{ s.way }}"><a href="{{ s.href }}" rel="noopener">🔎 {{ s.t[p.lang] }}</a></li>
     {%- endfor %}
     </ul>
     <p><button type="button" id="share">{{ ui.share }}</button></p>

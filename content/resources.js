@@ -251,7 +251,7 @@ export const resources = [
   },
   {
     name: "Easy Dutch",
-    topics: ["video"],
+    topics: ["youtube", "video"],
     url: "https://www.youtube.com/@EasyDutch",
     cat: "start", levels: ["A2", "B1", "B2"], cost: "free", formats: ["video"],
     langs: ["nl", "en"], where: "online", trust: "community",
@@ -357,6 +357,61 @@ export const resources = [
     sum: {
       nl: "Intensieve privélessen Nederlands, online of op locatie in Vught. Duur, maar snel resultaat.",
       en: "Intensive private Dutch lessons, online or on site in Vught. Expensive, but fast results.",
+    },
+  },
+  {
+    name: "Dutchies to be: Learn Dutch with Kim",
+    topics: ["youtube"],
+    url: "https://www.youtube.com/@learndutchwithkim",
+    cat: "start", levels: ["A1", "A2", "B1"], cost: "free", formats: ["video"],
+    langs: ["en", "nl"], where: "online", trust: "community",
+    sum: {
+      nl: "YouTube-kanaal met korte, duidelijke lessen over woorden, grammatica en uitspraak.",
+      en: "YouTube channel with short, clear lessons on vocabulary, grammar and pronunciation.",
+    },
+  },
+  {
+    name: "Learn Dutch with Bart de Pau (YouTube)",
+    topics: ["youtube"],
+    url: "https://www.youtube.com/@LearndutchOrg",
+    cat: "start", levels: ["A0", "A1", "A2", "B1"], cost: "free", formats: ["video"],
+    langs: ["en"], where: "online", trust: "community",
+    sum: {
+      nl: "Het YouTube-kanaal van Learndutch.org: honderden lessen grammatica en woorden, stap voor stap, met uitleg in het Engels.",
+      en: "The YouTube channel of Learndutch.org: hundreds of grammar and vocabulary lessons, step by step, explained in English.",
+    },
+  },
+  {
+    name: "DutchPod101 (YouTube)",
+    topics: ["youtube"],
+    url: "https://www.youtube.com/@DutchPod101",
+    cat: "start", levels: ["A0", "A1", "A2", "B1"], cost: "free", formats: ["video"],
+    langs: ["en"], where: "online", trust: "app",
+    sum: {
+      nl: "Gratis video's met woorden en zinnen voor elke dag. Het kanaal verwijst ook naar een betaalde website.",
+      en: "Free videos with words and phrases for every day. The channel also points to a paid website.",
+    },
+  },
+  {
+    name: "Learn Dutch with Alain",
+    topics: ["youtube"],
+    url: "https://www.youtube.com/@LearnDutchwithAlain",
+    cat: "start", levels: ["A1", "A2"], cost: "free", formats: ["video"],
+    langs: ["en", "nl"], where: "online", trust: "community",
+    sum: {
+      nl: "Lessen van een docent Nederlands uit België, voor beginners. Hij spreekt met een Vlaams accent.",
+      en: "Lessons from a Dutch teacher from Belgium, for beginners. He speaks with a Flemish accent.",
+    },
+  },
+  {
+    name: "NOS Jeugdjournaal (YouTube)",
+    topics: ["youtube"],
+    url: "https://www.youtube.com/@jeugdjournaal",
+    cat: "children", levels: ["A2", "B1"], cost: "free", formats: ["video"],
+    langs: ["nl"], where: "online", trust: "official",
+    sum: {
+      nl: "Korte nieuwsfilmpjes voor kinderen, in duidelijk Nederlands. Ook goed voor volwassenen die oefenen met luisteren.",
+      en: "Short news clips for children, in clear Dutch. Also good for adults practising listening.",
     },
   },
 ];
