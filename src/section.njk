@@ -23,5 +23,5 @@ eleventyComputed:
 {%- endfor %}
 </div>
 {%- for o in library.sections %}{% if o.key != s.key %}
-<p class="other">{{ ui.otherSection }}: <a href="{{ o.url[p.lang] }}">{{ o.icon }} {{ o.title[p.lang] }} →</a></p>
+<p class="other">{{ ui.otherSection }}: <a href="{{ o.url[p.lang] }}">{{ o.icon }} {{ o.title[p.lang] }} {{ ui.arrow }}</a></p>
 {%- endif %}{% endfor %}

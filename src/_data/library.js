@@ -3,15 +3,19 @@
 // (Named library.js, not content.js: that name clashes with the layout's `content`.)
 import { resources as raw, generated } from "../../content/resources.js";
 import { sections as rawSections } from "../../content/topics.js";
+import site from "./site.js";
 
-const LANGS = ["nl", "en"];
+// Dutch lives at /, every other language at /<code>/. Pages without their own
+// slug in a language (Arabic, Polish) use the English slug.
+const LANGS = site.languages.map((l) => l.code);
+const pre = (lang) => (lang === "nl" ? "/" : `/${lang}/`);
+const perLang = (f) => Object.fromEntries(LANGS.map((l) => [l, f(l)]));
+const slugIn = (slug, l) => slug[l] || slug.en;
 const fixed = {
-  home: { nl: "/", en: "/en/" },
-  about: { nl: "/over/", en: "/en/about/" },
-  choose: { nl: "/kiezen/", en: "/en/choose/" },
+  home: perLang(pre),
+  about: perLang((l) => (l === "nl" ? "/over/" : `${pre(l)}about/`)),
+  choose: perLang((l) => (l === "nl" ? "/kiezen/" : `${pre(l)}choose/`)),
 };
-const pre = (lang) => (lang === "nl" ? "/" : "/en/");
-const other = (lang) => (lang === "nl" ? "en" : "nl");
 
 // ---- "help me choose": which way of learning each resource fits -------------
 const has = (r, ...f) => r.formats.some((x) => f.includes(x));
@@ -34,11 +38,11 @@ const resources = raw
 
 // ---- sections and topics, with URLs in both languages ------------------------
 const sections = rawSections.map((s) => {
-  const url = Object.fromEntries(LANGS.map((l) => [l, `${pre(l)}${s.slug[l]}/`]));
+  const url = perLang((l) => `${pre(l)}${slugIn(s.slug, l)}/`);
   const topics = s.topics.map((t) => ({
     ...t,
     section: s.key,
-    url: Object.fromEntries(LANGS.map((l) => [l, `${url[l]}${t.slug[l]}/`])),
+    url: perLang((l) => `${url[l]}${slugIn(t.slug, l)}/`),
     resources: resources.filter((r) => r.topics.includes(t.key)),
     // "search now" buttons search Google, or YouTube when `yt: true`.
     live: (t.live || []).map((x) => ({
@@ -50,16 +54,17 @@ const sections = rawSections.map((s) => {
 });
 const allTopics = sections.flatMap((s) => s.topics);
 
-// One page object per language; every page knows its own and its other-language URL.
-const page = (lang, url, alt, extra) => ({
-  lang, url, alt, home: fixed.home[lang], about: fixed.about[lang], choose: fixed.choose[lang], ...extra,
+// One page object per language; every page knows its own URL and its URL in every
+// language (`alts`, for the language menu).
+const page = (lang, urls, extra) => ({
+  lang, dir: site.languages.find((x) => x.code === lang).dir || "ltr", url: urls[lang], alts: urls, home: fixed.home[lang], about: fixed.about[lang], choose: fixed.choose[lang], ...extra,
 });
-const pages = LANGS.map((l) => page(l, fixed.home[l], fixed.home[other(l)]));
-const aboutPages = LANGS.map((l) => page(l, fixed.about[l], fixed.about[other(l)]));
-const choosePages = LANGS.map((l) => page(l, fixed.choose[l], fixed.choose[other(l)]));
-const sectionPages = sections.flatMap((s) => LANGS.map((l) => page(l, s.url[l], s.url[other(l)], { section: s })));
+const pages = LANGS.map((l) => page(l, fixed.home));
+const aboutPages = LANGS.map((l) => page(l, fixed.about));
+const choosePages = LANGS.map((l) => page(l, fixed.choose));
+const sectionPages = sections.flatMap((s) => LANGS.map((l) => page(l, s.url, { section: s })));
 const topicPages = allTopics.flatMap((t) =>
-  LANGS.map((l) => page(l, t.url[l], t.url[other(l)], { topic: t, section: sections.find((s) => s.key === t.section) }))
+  LANGS.map((l) => page(l, t.url, { topic: t, section: sections.find((s) => s.key === t.section) }))
 );
 
 // "Search now" buttons on the help-me-choose page, by way of learning.

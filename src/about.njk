@@ -19,7 +19,7 @@ eleventyComputed:
 <p>Geen account, geen cookies, geen advertenties. Wat u in de filters kiest, blijft in uw eigen browser.</p>
 <h2>Een fout melden</h2>
 <p>Klopt er iets niet? Gebruik "Meld een fout" bij de bron, of <a href="{{ site.repo }}/issues/new">meld het hier</a>.</p>
-{% else %}
+{% elif p.lang == "en" %}
 <p class="intro">NederlandsLeren is a free guide for newcomers to the Netherlands. It doesn't teach Dutch itself; it points you to existing apps, language cafés, courses and exams.</p>
 <h2>Generated automatically</h2>
 <p>The list of resources and the translations are generated automatically and refreshed every month. Nobody checks them by hand, so they may contain errors. Prices, times and conditions can change: always check the provider's website, which is the source of truth.</p>
@@ -32,4 +32,30 @@ eleventyComputed:
 <p>No account, no cookies, no ads. Whatever you choose in the filters stays in your own browser.</p>
 <h2>Report a problem</h2>
 <p>Something wrong? Use "Report a problem" on the resource, or <a href="{{ site.repo }}/issues/new">report it here</a>.</p>
+{% elif p.lang == "ar" %}
+<p class="intro">NederlandsLeren دليل مجاني للقادمين الجدد إلى هولندا. لا يقدّم الموقع دروسًا، بل يرشدك إلى تطبيقات ومقاهٍ لغوية ودورات وامتحانات موجودة.</p>
+<h2>أُنشئ تلقائيًا</h2>
+<p>قائمة المصادر والترجمات تُنشأ تلقائيًا وتُحدَّث كل شهر. لا يراجعها أحد يدويًا، لذلك قد تحتوي على أخطاء. قد تتغيّر الأسعار والمواعيد والشروط: راجع دائمًا موقع الجهة المقدِّمة، فهو المرجع.</p>
+<p>لا يقدّم هذا الموقع نصائح قانونية أو شخصية.</p>
+<h2>ما المصادر الموجودة هنا؟</h2>
+<p>مصادر مجانية، ومصادر مدفوعة بسعر ومستوى واضحين. لا أحد يدفع ليظهر هنا.</p>
+<h2>الجودة</h2>
+<p>لم يتم التحقق من جودة الدورات والمدارس والتطبيقات والمواقع. وجود مصدر هنا لا يعني أنه موصى به. قبل أن تدفع، اسأل عن المستوى والمعلّم وعدد الدروس والسعر الإجمالي، وهل يمكنك حضور درس تجريبي. قد تساعدك علامة جودة، مثل علامة <a href="https://www.nrto.nl/">NRTO</a>، في الاختيار.</p>
+<h2>الخصوصية</h2>
+<p>لا حساب، ولا ملفات تعريف الارتباط (cookies)، ولا إعلانات. ما تختاره يبقى في متصفحك فقط.</p>
+<h2>الإبلاغ عن خطأ</h2>
+<p>هل هناك شيء غير صحيح؟ استخدم «أبلغ عن خطأ» عند المصدر، أو <a href="{{ site.repo }}/issues/new">أبلغ عنه هنا</a>.</p>
+{% else %}
+<p class="intro">NederlandsLeren to bezpłatny przewodnik dla osób, które niedawno przyjechały do Holandii. Strona nie prowadzi lekcji, ale wskazuje istniejące aplikacje, kawiarnie językowe, kursy i egzaminy.</p>
+<h2>Utworzone automatycznie</h2>
+<p>Lista źródeł i tłumaczenia są tworzone automatycznie i odnawiane co miesiąc. Nikt nie sprawdza ich ręcznie, więc mogą zawierać błędy. Ceny, godziny i warunki mogą się zmieniać: zawsze sprawdzaj stronę organizatora. To ona jest wiążąca.</p>
+<p>Ta strona nie udziela porad prawnych ani osobistych.</p>
+<h2>Jakie źródła tu są?</h2>
+<p>Bezpłatne źródła oraz płatne źródła z jasną ceną i poziomem. Nikt nie płaci za to, żeby tu być.</p>
+<h2>Jakość</h2>
+<p>Jakość kursów, szkół, aplikacji i stron internetowych nie została sprawdzona. To, że źródło jest tutaj, nie oznacza, że jest polecane. Zanim zapłacisz, zapytaj o poziom, nauczyciela, liczbę lekcji i całkowitą cenę oraz o to, czy możesz wziąć udział w lekcji próbnej. Znak jakości, na przykład <a href="https://www.nrto.nl/">NRTO</a>, może pomóc w wyborze.</p>
+<h2>Prywatność</h2>
+<p>Bez konta, bez plików cookie, bez reklam. To, co wybierzesz, zostaje w Twojej przeglądarce.</p>
+<h2>Zgłoś błąd</h2>
+<p>Coś się nie zgadza? Użyj „Zgłoś błąd” przy źródle albo <a href="{{ site.repo }}/issues/new">zgłoś to tutaj</a>.</p>
 {% endif %}

@@ -1,10 +1,11 @@
-// Checks content/resources.js before it is published. Run: npm run check
+// Checks content/resources.js, the topics and all translations before they are published. Run: npm run check
 // Exits with an error (and a list of problems) if anything is wrong.
 import { resources, generated } from "../content/resources.js";
 import { sections } from "../content/topics.js";
 import site from "../src/_data/site.js";
 
 const L = site.labels;
+const LANGS = site.languages.map((l) => l.code);
 const errors = [], warnings = [];
 const topicKeys = new Set(sections.flatMap((s) => s.topics.map((t) => t.key)));
 const one = (set) => (v) => set.includes(v);
@@ -42,7 +43,7 @@ for (const r of resources) {
   else for (const l of r.langs) if (!ok.lang(l)) e(`unknown language "${l}" (add it to labels.lang in src/_data/site.js first)`);
   if (!ok.where(r.where)) e(`unknown where "${r.where}"`);
   if (!ok.trust(r.trust)) e(`unknown trust "${r.trust}"`);
-  for (const lang of ["nl", "en"]) {
+  for (const lang of LANGS) {
     const n = words(r.sum && r.sum[lang]);
     if (!n) e(`missing ${lang} summary`);
     else if (n > 35) e(`${lang} summary is ${n} words; keep it under 30`);
@@ -50,6 +51,28 @@ for (const r of resources) {
   // Inburgering is deferred by the owner: no inburgering content for now.
   const text = [r.name, r.url, r.sum && r.sum.nl, r.sum && r.sum.en].join(" ").toLowerCase();
   if (/inburger|civic integration/.test(text)) e("mentions inburgering / civic integration, which is deferred");
+}
+
+// Every text in topics.js and site.js needs every site language.
+const need = (where, obj) => {
+  for (const l of LANGS) if (!obj || !String(obj[l] || "").trim()) errors.push(`${where}: missing ${l} text`);
+};
+for (const s of sections) {
+  for (const f of ["title", "kicker", "intro"]) need(`section "${s.key}" ${f}`, s[f]);
+  for (const t of s.topics) {
+    for (const f of ["title", "intro"]) need(`topic "${t.key}" ${f}`, t[f]);
+    if (t.liveText) need(`topic "${t.key}" liveText`, t.liveText);
+    for (const x of t.live || []) need(`topic "${t.key}" search button "${x.q}"`, x.t);
+  }
+}
+for (const group of ["cat", "cost", "fmt", "where", "trust", "speak", "ways"])
+  for (const [k, v] of Object.entries(L[group])) {
+    need(`labels.${group}.${k}`, v);
+    if (v.title) need(`labels.${group}.${k}.title`, v.title);
+  }
+for (const l of LANGS) {
+  if (!site.ui[l]) { errors.push(`site.js: no interface texts (ui.${l})`); continue; }
+  for (const k of Object.keys(site.ui.nl)) if (!(k in site.ui[l])) errors.push(`site.js: ui.${l}.${k} is missing`);
 }
 
 for (const s of sections) for (const t of s.topics) {
@@ -66,4 +89,4 @@ if (errors.length) {
   for (const x of errors) console.error(" -", x);
   process.exit(1);
 }
-console.log(`OK: ${resources.length} resources, generated ${generated}.`);
+console.log(`OK: ${resources.length} resources in ${LANGS.length} languages (${LANGS.join(", ")}), generated ${generated}.`);

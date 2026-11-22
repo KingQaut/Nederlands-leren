@@ -1,15 +1,15 @@
 {#- One resource as a row: the whole row links to the provider. -#}
 {%- macro row(r, lang, L, ui, repo) -%}
 <li class="row" data-ways="{{ r.ways | join(' ') }}" data-levels="{{ r.levels | join(' ') }}" data-rank="{{ r.rank }}" data-cost="{{ r.cost }}"
-    data-text="{{ [r.name, r.sum.nl, r.sum.en, L.cat[r.cat].nl, L.cat[r.cat].en, L.where[r.where].nl, L.where[r.where].en] | searchText }}">
+    data-text="{{ [r.name, r.sum.nl, r.sum.en, r.sum[lang], L.cat[r.cat].nl, L.cat[r.cat].en, L.cat[r.cat][lang], L.where[r.where].nl, L.where[r.where].en, L.where[r.where][lang]] | searchText }}">
   <a class="row-main" href="{{ r.url }}" rel="noopener">
     <span class="row-name">{{ r.name }}</span>
     <span class="row-sum">{{ r.sum[lang] }}</span>
     <span class="row-tags">
       <b class="{{ r.cost }}">{{ L.cost[r.cost][lang] }}</b>
-      <span>{{ r.levels | first }}{% if r.levels.length > 1 %}–{{ r.levels | last }}{% endif %}</span>
+      <span dir="ltr">{{ r.levels | first }}{% if r.levels.length > 1 %}–{{ r.levels | last }}{% endif %}</span>
       <span>{{ L.fmt[r.formats | first][lang] }}</span>
-      {%- if r.where == "amsterdam" %}<span>📍 Amsterdam</span>{% endif %}
+      {%- if r.where == "amsterdam" %}<span>📍 {{ L.where.amsterdam[lang] }}</span>{% endif %}
       <span class="langs">🌐 {% for l in r.langs %}<span lang="{{ l }}">{{ L.lang[l] }}</span>{% if not loop.last %}, {% endif %}{% endfor %}</span>
     </span>
     <span class="row-go" aria-hidden="true">↗</span>
