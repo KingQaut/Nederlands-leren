@@ -29,6 +29,10 @@ generated automatically; the site already says so on every page.
 
 ## Rules for entries
 
+- **Curated entries (`curated: true`) belong to the owner.** Do not change, move or remove
+  them, and do not translate them. Still check their link; if it is broken or the provider
+  seems gone, say so in the report and let the owner decide.
+
 - Follow the field list at the top of `content/resources.js`; topic keys come from
   `content/topics.js`. Do not change `topics.js`, templates or styles in this task.
 - **Summaries:** plain language at CEFR A2/B1, max ~25 words, no marketing words, one in
@@ -45,7 +49,8 @@ generated automatically; the site already says so on every page.
   provider's own site, leave the resource out.
 - Keep the three home-page picks (`quickNames` in `src/_data/library.js`) unless one is
   gone; `npm run check` fails if one is missing.
-- Things that change weekly (dates, times of language cafés) are not listed; the topic
+- Things that change weekly (dates, times of language cafés) are not listed (curated
+  entries are the exception: the owner keeps those times up to date); the topic
   pages have "search now" buttons for those.
 
 ## If something goes wrong

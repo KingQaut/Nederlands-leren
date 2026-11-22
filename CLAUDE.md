@@ -17,6 +17,8 @@ Product requirements document (a Claude doc, read it with the docs tools): https
 - **Translations: new items in Dutch and English only.** Anything new (resources, topics, search buttons, interface texts) is written in Dutch and English first. Do not add Arabic, Polish, Turkish or other translations until the owner asks for them; meanwhile the site shows the English text in those languages (`withEnglishFallback` in `src/_lib/site-texts.js`), and `npm run check` lists how many texts are untranslated. When you change an existing text, change the Dutch and English and remove its other-language versions (they would be out of date), and tell the owner.
 - **Inburgering (civic integration) is a secondary goal, deferred.** The site deliberately has no inburgering content for now; do not add it back until the owner asks. When it returns, inburgering schools need the Blik op Werk Keurmerk Inburgeren.
 
+- **Curated entries:** a resource with `curated: true` in `content/resources.js` was added by the owner, who keeps it up to date (it may use `http://` and list days and times). Automatic content updates leave it alone and only report problems. Add one only when the owner gives the details.
+
 Do not add anything that needs regular human upkeep without asking the owner first.
 
 ## How it is built

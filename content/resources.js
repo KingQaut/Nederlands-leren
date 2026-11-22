@@ -16,6 +16,9 @@
 //   trust    official | library | university | quality | ngo | community | app
 //   sum      one-line summary, max ~25 words, in Dutch (nl) and English (en); Arabic (ar), Polish (pl)
 //            and Turkish (tr) only once the owner asks for them (until then the site shows English)
+//   curated  true = added and kept up to date by the owner. Automatic content updates must not
+//            change or remove it; they only report problems (see content/UPDATING.md).
+//            A curated entry may use http:// and may mention days and times.
 
 export const generated = "2026-11-21";
 
@@ -522,6 +525,18 @@ export const resources = [
       ar: "مقاطع أخبار قصيرة للأطفال، بهولندية واضحة. جيدة أيضًا للكبار للتدرب على الاستماع.",
       pl: "Krótkie wiadomości dla dzieci, w wyraźnym niderlandzkim. Dobre także dla dorosłych do ćwiczenia słuchania.",
       tr: "Çocuklar için açık Hollandaca kısa haber videoları. Dinleme pratiği yapan yetişkinler için de iyi.",
+    },
+  },
+  {
+    name: "Assadaaka",
+    topics: ["talk"],
+    url: "http://assadaaka.nl/",
+    curated: true,
+    cat: "courses", levels: ["A1", "A2", "B1"], cost: "free", formats: ["class"],
+    langs: ["nl"], where: "amsterdam", trust: "community",
+    sum: {
+      nl: "Gratis lessen Nederlands in Amsterdam, van maandag tot en met donderdag van 19.30 tot 21.30 uur. Niveau A1 tot B1.",
+      en: "Free Dutch classes in Amsterdam, Monday to Thursday from 19:30 to 21:30. Level A1 to B1.",
     },
   },
 ];
