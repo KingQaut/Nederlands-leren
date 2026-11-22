@@ -3,7 +3,9 @@
 // (Named library.js, not content.js: that name clashes with the layout's `content`.)
 import { resources as rawResources, generated } from "../../content/resources.js";
 import { sections as rawSectionsIn } from "../../content/topics.js";
-import site, { withEnglishFallback } from "./site.js";
+import { siteWithFallback, withEnglishFallback } from "../_lib/site-texts.js";
+
+const site = siteWithFallback();
 
 // Texts not yet translated (new items start in Dutch and English only) show in English.
 const raw = withEnglishFallback(rawResources);
