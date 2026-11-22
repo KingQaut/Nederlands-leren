@@ -45,7 +45,6 @@ const sections = rawSections.map((s) => {
       ...x,
       href: (x.yt ? "https://www.youtube.com/results?search_query=" : "https://www.google.com/search?q=") + encodeURIComponent(x.q),
     })),
-    hasPaid: resources.some((r) => r.topics.includes(t.key) && r.cost === "paid"),
   }));
   return { ...s, url, topics };
 });

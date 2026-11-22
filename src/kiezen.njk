@@ -42,7 +42,7 @@ eleventyComputed:
     <h2>{{ ui.bestFor }}</h2>
     <p id="closest" class="hint" hidden>{{ ui.closest }}</p>
     <ul id="res-list" class="rows big"></ul>
-    <p id="paid-note" class="quality" role="note" hidden><span aria-hidden="true">⚠️</span> {{ ui.paidNote }} <a href="{{ p.about }}">{{ ui.moreInfo }}</a></p>
+    <p class="quality" role="note"><span aria-hidden="true">⚠️</span> {{ ui.paidNote }} <a href="{{ p.about }}">{{ ui.moreInfo }}</a></p>
     <ul class="now">
     {%- for s in library.searchNow %}
       <li data-way="{{ s.way }}"><a href="{{ s.href }}" rel="noopener">🔎 {{ s.t[p.lang] }}</a></li>
