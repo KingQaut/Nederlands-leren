@@ -14,6 +14,7 @@ Product requirements document (a Claude doc, read it with the docs tools): https
 - **Audience:** newcomers with limited Dutch, often on a cheap phone. Plain language, large tap targets, WCAG 2.2 AA, no cookies or tracking.
 - **Coverage:** national and online resources, plus Amsterdam for local listings.
 - **Paid courses, schools and apps** may be listed if they have a published price and stated levels; no quality mark is required (owner's decision). The site does not check quality and says so: on the About page and in a note on every topic page and on the help-me-choose results.
+- **Translations: new items in Dutch and English only.** Anything new (resources, topics, search buttons, interface texts) is written in Dutch and English first. Do not add Arabic, Polish or other translations until the owner asks for them; meanwhile the site shows the English text in those languages (`withEnglishFallback` in `src/_data/site.js`), and `npm run check` lists how many texts are untranslated. When you change an existing text, change the Dutch and English and remove its other-language versions (they would be out of date), and tell the owner.
 - **Inburgering (civic integration) is a secondary goal, deferred.** The site deliberately has no inburgering content for now; do not add it back until the owner asks. When it returns, inburgering schools need the Blik op Werk Keurmerk Inburgeren.
 
 Do not add anything that needs regular human upkeep without asking the owner first.
@@ -22,7 +23,7 @@ Do not add anything that needs regular human upkeep without asking the owner fir
 
 | What | Where |
 | --- | --- |
-| Resources (one entry each, texts in every site language; `topics` says where each is listed) | `content/resources.js` |
+| Resources (one entry each, texts in Dutch + English, other languages when the owner asks; `topics` says where each is listed) | `content/resources.js` |
 | The two sections (online / in person), their topics, intros and "search now" buttons | `content/topics.js` |
 | Site languages (`languages`), interface texts and labels (categories, formats, levels…) | `src/_data/site.js` |
 | Content passed to templates; works out each resource's "ways" of learning and its rank | `src/_data/library.js` (not `content.js`: that name clashes with the layout's `content`) |
@@ -48,4 +49,4 @@ Modelled on indiawijzer.nl. The home page has two big coloured halves, **Online 
 2. Evenings 2–3: content update procedure (done, see `content/UPDATING.md`; run by hand), guided finder (done as Help me choose), more "search now" buttons.
 3. Evening 4: Arabic (RTL, done) and Polish (done, owner's request); still to do: Ukrainian, Turkish, Tigrinya; accessibility pass; more Amsterdam listings.
 
-To add a language: add it to `languages` in `src/_data/site.js`, then add its texts everywhere `npm run check` reports them missing (labels and `ui` in `site.js`, `content/topics.js`, every `sum` in `content/resources.js`) and a block in `src/about.njk`.
+To add a language (only when the owner asks): add it to `languages` in `src/_data/site.js`, then add its texts everywhere `npm run check` reports them untranslated (labels and `ui` in `site.js`, `content/topics.js`, every `sum` in `content/resources.js`) and a block in `src/about.njk`.

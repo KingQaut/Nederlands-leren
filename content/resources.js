@@ -1,4 +1,5 @@
-// All resources on the site. One entry per resource; texts in Dutch (nl), English (en), Arabic (ar) and Polish (pl).
+// All resources on the site. One entry per resource; texts in Dutch (nl) and English (en),
+// plus Arabic (ar) and Polish (pl) where the owner has asked for them.
 // This file is meant to be (re)generated automatically; the site shows a disclaimer saying so.
 //
 // Fields
@@ -13,7 +14,8 @@
 //   where    national | online | amsterdam
 //   address  optional street address (local places only)
 //   trust    official | library | university | quality | ngo | community | app
-//   sum      one-line summary, max ~25 words, in every site language (nl en ar pl)
+//   sum      one-line summary, max ~25 words, in Dutch (nl) and English (en); Arabic (ar) and
+//            Polish (pl) only once the owner asks for them (until then the site shows English)
 
 export const generated = "2026-11-21";
 

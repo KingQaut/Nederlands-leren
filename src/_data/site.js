@@ -1,5 +1,7 @@
 // Site name, links, languages and all interface texts (Dutch, English, Arabic, Polish).
-export default {
+// Dutch and English are required everywhere. Any other language may be missing a text
+// (new items are written in Dutch and English first); the site then shows the English text.
+export const raw = {
   name: "NederlandsLeren",
   // Free address until a domain is chosen. Change this when a domain is connected.
   url: "https://kingqaut.github.io/Nederlands-leren",
@@ -332,3 +334,18 @@ export default {
     },
   },
 };
+
+// Fills every missing translation with the English text, everywhere in `x`:
+// any object with an `en` text counts as a translation (e.g. { nl, en, ar, pl }).
+export function withEnglishFallback(x, langs = raw.languages.map((l) => l.code)) {
+  if (Array.isArray(x)) return x.map((v) => withEnglishFallback(v, langs));
+  if (!x || typeof x !== "object") return x;
+  const out = Object.fromEntries(Object.entries(x).map(([k, v]) => [k, withEnglishFallback(v, langs)]));
+  if (typeof x.en === "string") for (const l of langs) if (!String(out[l] ?? "").trim()) out[l] = x.en;
+  return out;
+}
+
+const site = withEnglishFallback(raw);
+// Interface texts: a key missing in one language falls back to the English one.
+for (const l of raw.languages.map((x) => x.code)) site.ui[l] = { ...site.ui.en, ...site.ui[l] };
+export default site;

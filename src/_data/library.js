@@ -1,9 +1,13 @@
 // Turns the content files into everything the templates need: sections, topic
-// pages, URLs in both languages, the "help me choose" data and the search index.
+// pages, URLs in every language, the "help me choose" data and the search index.
 // (Named library.js, not content.js: that name clashes with the layout's `content`.)
-import { resources as raw, generated } from "../../content/resources.js";
-import { sections as rawSections } from "../../content/topics.js";
-import site from "./site.js";
+import { resources as rawResources, generated } from "../../content/resources.js";
+import { sections as rawSectionsIn } from "../../content/topics.js";
+import site, { withEnglishFallback } from "./site.js";
+
+// Texts not yet translated (new items start in Dutch and English only) show in English.
+const raw = withEnglishFallback(rawResources);
+const rawSections = withEnglishFallback(rawSectionsIn);
 
 // Dutch lives at /, every other language at /<code>/. Pages without their own
 // slug in a language (Arabic, Polish) use the English slug.

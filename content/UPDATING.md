@@ -32,9 +32,11 @@ generated automatically; the site already says so on every page.
 - Follow the field list at the top of `content/resources.js`; topic keys come from
   `content/topics.js`. Do not change `topics.js`, templates or styles in this task.
 - **Summaries:** plain language at CEFR A2/B1, max ~25 words, no marketing words, one in
-  every site language: Dutch (`nl`), English (`en`), Arabic (`ar`) and Polish (`pl`); the
-  list is `languages` in `src/_data/site.js`. Write the Dutch one first and translate it.
-  Say "free" only when a real free version exists.
+  Dutch (`nl`) and one in English (`en`). Say "free" only when a real free version exists.
+- **No other translations.** Do not write Arabic (`ar`), Polish (`pl`) or other summaries for
+  new resources; the owner asks for translations separately, and until then the site shows
+  the English text. If you change an existing summary, remove that resource's other-language
+  summaries (they would be out of date) and list those resources in the report.
 - **Paid** courses, schools and apps may be listed if they show a price and the levels
   they teach. Do not claim a quality mark unless the provider's own site shows it.
 - **No inburgering (civic integration) content.** The owner has deferred it.

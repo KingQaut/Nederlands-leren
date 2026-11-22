@@ -1,4 +1,5 @@
-// The two sections of the site and their topics, in every site language (nl en ar pl).
+// The two sections of the site and their topics. Texts in Dutch and English; Arabic and Polish
+// only once the owner asks for them (until then the site shows the English text).
 // Each resource in resources.js says which topics it belongs to (field `topics`).
 // `slug` = the address of the page; Arabic and Polish pages use the English slug.
 // `live` = "search now" buttons: a live Google search for things that change every week
@@ -62,21 +63,15 @@ export const sections = [
           pl: "Bezpłatne kanały na YouTube: lekcje z wyjaśnieniami, prawdziwy niderlandzki na ulicy i zwykła holenderska telewizja. Włącz napisy.",
         },
         liveText: {
-          nl: "Van deze kanalen is het precieze adres niet bevestigd. Deze knoppen zoeken ze op YouTube, zodat u niet op een verkeerd kanaal komt.",
-          en: "For these channels the exact address has not been confirmed. These buttons search for them on YouTube, so you do not end up on a wrong channel.",
-          ar: "لم يتم التأكد من العنوان الدقيق لهذه القنوات. تبحث هذه الأزرار عنها على يوتيوب، حتى لا تصل إلى قناة خاطئة.",
-          pl: "Dokładny adres tych kanałów nie został potwierdzony. Te przyciski wyszukują je na YouTube, żeby nie trafić na niewłaściwy kanał.",
+          nl: "Van dit kanaal is het precieze adres niet bevestigd. Deze knop zoekt het op YouTube, zodat u niet op een verkeerd kanaal komt.",
+          en: "For this channel the exact address has not been confirmed. This button searches for it on YouTube, so you do not end up on a wrong channel.",
+          ar: "لم يتم التأكد من العنوان الدقيق لهذه القناة. يبحث هذا الزر عنها على يوتيوب، حتى لا تصل إلى قناة خاطئة.",
+          pl: "Dokładny adres tego kanału nie został potwierdzony. Ten przycisk wyszukuje go na YouTube, żeby nie trafić na niewłaściwy kanał.",
         },
         live: [
           { yt: true, q: "Learn Dutch with Videos", t: {
             nl: "Learn Dutch with Videos (alledaags Nederlands)", en: "Learn Dutch with Videos (everyday Dutch)",
             ar: "Learn Dutch with Videos (هولندية يومية)", pl: "Learn Dutch with Videos (codzienny niderlandzki)" } },
-          { yt: true, q: "Het Klokhuis", t: {
-            nl: "Het Klokhuis (kinder-tv, ook goed voor volwassenen)", en: "Het Klokhuis (children's TV, good for adults too)",
-            ar: "Het Klokhuis (تلفزيون للأطفال، مفيد للكبار أيضًا)", pl: "Het Klokhuis (telewizja dla dzieci, dobra też dla dorosłych)" } },
-          { yt: true, q: "LUBACH RTL", t: {
-            nl: "LUBACH (satire op RTL 4, voor gevorderden)", en: "LUBACH (satire on RTL 4, for advanced learners)",
-            ar: "LUBACH (برنامج ساخر على RTL 4، للمتقدمين)", pl: "LUBACH (satyra w RTL 4, dla zaawansowanych)" } },
         ],
       },
       {
