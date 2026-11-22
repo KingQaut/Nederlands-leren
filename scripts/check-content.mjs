@@ -2,7 +2,7 @@
 // Exits with an error (and a list of problems) if anything is wrong.
 import { resources, generated } from "../content/resources.js";
 import { sections } from "../content/topics.js";
-import { raw as site } from "../src/_data/site.js";
+import { raw as site } from "../src/_lib/site-texts.js";
 
 const L = site.labels;
 const LANGS = site.languages.map((l) => l.code);
@@ -44,7 +44,7 @@ for (const r of resources) {
   if (!Array.isArray(r.formats) || !r.formats.length) e("needs at least one format");
   else for (const f of r.formats) if (!ok.fmt(f)) e(`unknown format "${f}"`);
   if (!Array.isArray(r.langs) || !r.langs.length) e("needs at least one language in langs");
-  else for (const l of r.langs) if (!ok.lang(l)) e(`unknown language "${l}" (add it to labels.lang in src/_data/site.js first)`);
+  else for (const l of r.langs) if (!ok.lang(l)) e(`unknown language "${l}" (add it to labels.lang in src/_lib/site-texts.js first)`);
   if (!ok.where(r.where)) e(`unknown where "${r.where}"`);
   if (!ok.trust(r.trust)) e(`unknown trust "${r.trust}"`);
   for (const lang of LANGS) {
@@ -93,6 +93,14 @@ for (const s of sections) for (const t of s.topics) {
 }
 for (const n of ["Oefenen.nl", "Het Begint met Taal", "Bibliotheek: Taalhuis en taalcafé"])
   if (!names.has(n)) errors.push(`"${n}" is shown on the home page (quickNames in src/_data/library.js) but is missing`);
+
+// Eleventy data files must have only a default export (see src/_data/site.js);
+// otherwise the templates silently get empty texts.
+import { readdirSync } from "node:fs";
+for (const f of readdirSync(new URL("../src/_data/", import.meta.url)).filter((f) => f.endsWith(".js"))) {
+  const extra = Object.keys(await import(`../src/_data/${f}`)).filter((k) => k !== "default");
+  if (extra.length) errors.push(`src/_data/${f} must only have a default export, but also exports: ${extra.join(", ")}`);
+}
 
 for (const [l, n] of untranslated) console.log(`note: ${n} text(s) not yet in "${l}"; the site shows English there.`);
 for (const w of warnings) console.log("warning:", w);
