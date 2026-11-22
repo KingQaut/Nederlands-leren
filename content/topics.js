@@ -51,8 +51,8 @@ export const sections = [
           en: "Free YouTube channels: lessons with explanations, real Dutch on the street, and ordinary Dutch TV. Turn on the subtitles.",
         },
         liveText: {
-          nl: "Van deze kanalen weten we het precieze adres niet zeker. Deze knoppen zoeken ze op YouTube, zodat u niet op een verkeerd kanaal komt.",
-          en: "For these channels we are not sure of the exact address. These buttons search for them on YouTube, so you do not end up on a wrong channel.",
+          nl: "Van deze kanalen is het precieze adres niet bevestigd. Deze knoppen zoeken ze op YouTube, zodat u niet op een verkeerd kanaal komt.",
+          en: "For these channels the exact address has not been confirmed. These buttons search for them on YouTube, so you do not end up on a wrong channel.",
         },
         live: [
           { yt: true, q: "Learn Dutch with Videos", t: { nl: "Learn Dutch with Videos (alledaags Nederlands)", en: "Learn Dutch with Videos (everyday Dutch)" } },
