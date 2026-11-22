@@ -35,7 +35,7 @@
     <details class="lang">
       <summary aria-label="{{ ui.langMenu }}"><span aria-hidden="true">🌐</span> {% for l in site.languages %}{% if l.code == p.lang %}<span class="long">{{ l.name }}</span><span class="short">{{ l.short }}</span>{% endif %}{% endfor %}</summary>
       <ul>
-      {%- for l in site.languages %}
+      {%- for l in site.languages | sort(false, true, "name") %}
         <li><a href="{{ p.alts[l.code] }}" lang="{{ l.code }}" hreflang="{{ l.code }}"{% if l.dir %} dir="{{ l.dir }}"{% endif %}{% if l.code == p.lang %} aria-current="true"{% endif %}>{{ l.name }}</a></li>
       {%- endfor %}
       </ul>
@@ -58,7 +58,7 @@
   <div class="wrap">
     <p>{{ ui.footer }}</p>
     <p>{% for s in library.sections %}<a href="{{ s.url[p.lang] }}">{{ s.title[p.lang] }}</a> · {% endfor %}<a href="{{ p.choose }}">{{ ui.chooseNav }}</a></p>
-    <p>{% for l in site.languages %}<a href="{{ p.alts[l.code] }}" lang="{{ l.code }}" hreflang="{{ l.code }}"{% if l.dir %} dir="{{ l.dir }}"{% endif %}>{{ l.name }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
+    <p>{% for l in site.languages | sort(false, true, "name") %}<a href="{{ p.alts[l.code] }}" lang="{{ l.code }}" hreflang="{{ l.code }}"{% if l.dir %} dir="{{ l.dir }}"{% endif %}>{{ l.name }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
     <p><a href="{{ p.about }}">{{ ui.about }}</a> · {{ ui.generated }}: <span dir="ltr">{{ library.generated }}</span></p>
   </div>
 </footer>
