@@ -40,6 +40,7 @@ Modelled on indiawijzer.nl. The home page has two big coloured halves, **Online 
 
 - Nunjucks pitfall: `none` is a keyword, so a data key named `none` breaks the template.
 - The publish workflow sets `PATH_PREFIX=/Nederlands-leren/` for the free GitHub Pages address.
+- The header shows a small QR code of the site address next to the logo (`src/assets/qr.svg`, generated once with the `qrcode` npm package). Remake it only if the address changes.
 
 ## Roadmap (from the PRD)
 

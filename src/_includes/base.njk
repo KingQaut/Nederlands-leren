@@ -24,6 +24,8 @@
       <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M5 7.5h15a6 6 0 0 1 6 6v4a6 6 0 0 1-6 6h-6l-6 4.5v-4.5H5z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M10 13.5h11M10 17.5h7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
       <span>Nederlands<b>Leren</b></span>
     </a>
+    {#- Small on purpose: people zoom in to scan it and open the site on their own phone. #}
+    <img class="qr" src="/assets/qr.svg" width="30" height="30" alt="{{ ui.qrAlt }}" title="{{ ui.qrAlt }}">
     <form class="search" role="search" onsubmit="return false">
       <input type="search" id="q" placeholder="{{ ui.siteSearchPh }}" aria-label="{{ ui.siteSearch }}" autocomplete="off" data-empty="{{ ui.noHits }}">
       <ul id="hits" hidden></ul>
