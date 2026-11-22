@@ -88,6 +88,10 @@ main.wrap { padding-bottom: 40px; min-height: 60vh; }
 .tile .n { color: var(--muted); font-weight: 600; }
 .card.choose { background: var(--accent); border-color: var(--accent); }
 .card.choose h2, .card.choose p { color: var(--accent-ink); }
+.card.levels { margin-top: 14px; }
+.lvl { list-style: none; margin: 0; padding: 0; color: var(--muted); font-size: .95rem; }
+.lvl li { margin: 0 0 .35em; padding-left: 2.4em; }
+.lvl b { display: inline-block; width: 2.15em; margin-left: -2.4em; color: var(--ink); }
 .btn { display: inline-block; padding: 9px 16px; border-radius: 999px; background: var(--accent-ink); color: var(--accent); font-weight: 700; font-size: .95rem; }
 .mini { list-style: none; padding: 0; margin: 0; }
 .mini li { padding: 8px 0; border-top: 1px solid var(--line); }

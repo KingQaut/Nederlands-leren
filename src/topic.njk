@@ -19,18 +19,16 @@ eleventyComputed:
 <ul class="rows big">
 {%- for r in t.resources %}{{ row(r, p.lang, site.labels, ui, site.repo) }}{% endfor %}
 </ul>
-{%- if t.hasPaid %}
 <p class="quality" role="note"><span aria-hidden="true">⚠️</span> {{ ui.paidNote }} <a href="{{ p.about }}">{{ ui.moreInfo }}</a></p>
-{%- endif %}
 {%- else %}
 <p class="hint">{{ ui.empty }}</p>
 {%- endif %}
 {%- if t.live.length %}
 <h2>{{ ui.live }}</h2>
-<p class="hint">{{ ui.liveText }}</p>
+<p class="hint">{{ t.liveText[p.lang] if t.liveText else ui.liveText }}</p>
 <ul class="now">
 {%- for x in t.live %}
-  <li><a href="https://www.google.com/search?q={{ x.q | urlencode }}" rel="noopener">🔎 {{ x.t[p.lang] }}</a></li>
+  <li><a href="{{ x.href }}" rel="noopener">🔎 {{ x.t[p.lang] }}</a></li>
 {%- endfor %}
 </ul>
 {%- endif %}

@@ -31,6 +31,11 @@ eleventyComputed:
   </fieldset>
 </form>
 
+<section class="card levels" aria-labelledby="levels-h">
+  <h2 id="levels-h"><span aria-hidden="true">📶</span> {{ ui.levelsTitle }}</h2>
+  <ul class="lvl">{% for x in ui.levelsText %}<li><b>{{ x[0] }}</b> {{ x[1] }}</li>{% endfor %}</ul>
+</section>
+
 <section id="match" class="match" aria-live="polite" hidden>
   <div id="waiting">
     <p class="hint">{{ ui.waiting }}</p>
@@ -42,10 +47,10 @@ eleventyComputed:
     <h2>{{ ui.bestFor }}</h2>
     <p id="closest" class="hint" hidden>{{ ui.closest }}</p>
     <ul id="res-list" class="rows big"></ul>
-    <p id="paid-note" class="quality" role="note" hidden><span aria-hidden="true">⚠️</span> {{ ui.paidNote }} <a href="{{ p.about }}">{{ ui.moreInfo }}</a></p>
+    <p class="quality" role="note"><span aria-hidden="true">⚠️</span> {{ ui.paidNote }} <a href="{{ p.about }}">{{ ui.moreInfo }}</a></p>
     <ul class="now">
     {%- for s in library.searchNow %}
-      <li data-way="{{ s.way }}"><a href="https://www.google.com/search?q={{ s.q | urlencode }}" rel="noopener">🔎 {{ s.t[p.lang] }}</a></li>
+      <li data-way="{{ s.way }}"><a href="{{ s.href }}" rel="noopener">🔎 {{ s.t[p.lang] }}</a></li>
     {%- endfor %}
     </ul>
     <p><button type="button" id="share">{{ ui.share }}</button></p>

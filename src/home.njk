@@ -40,6 +40,6 @@ eleventyComputed:
   </section>
   <section class="card">
     <h2><span aria-hidden="true">📶</span> {{ ui.levelsCard }}</h2>
-    <p>{{ ui.levelsText }}</p>
+    <ul class="lvl">{% for x in ui.levelsText %}<li><b>{{ x[0] }}</b> {{ x[1] }}</li>{% endfor %}</ul>
   </section>
 </div>
