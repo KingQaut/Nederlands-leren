@@ -10,7 +10,7 @@ Product requirements document (a Claude doc, read it with the docs tools): https
 ## Hard requirements
 
 - **€0 running cost, minimal maintenance.** No database, CMS, server, paid service or domain. Static Eleventy site on GitHub Pages (free address `kingqaut.github.io/Nederlands-leren`).
-- **Content is generated automatically**, not curated by hand; every page shows a disclaimer saying so. Generation runs on the owner's Claude subscription (planned: a monthly scheduled Claude Code task that regenerates `content/resources.js` and commits it).
+- **Content is generated automatically**, not curated by hand; every page shows a disclaimer saying so. Generation runs on the owner's Claude subscription (a monthly scheduled Claude Code task follows `content/UPDATING.md`: it checks and updates `content/resources.js` on a branch, runs the link check there, and only then moves it to `main`).
 - **Audience:** newcomers with limited Dutch, often on a cheap phone. Plain language, large tap targets, WCAG 2.2 AA, no cookies or tracking.
 - **Coverage:** national and online resources, plus Amsterdam for local listings.
 - **Paid courses, schools and apps** may be listed if they have a published price and stated levels; no quality mark is required (owner's decision). The site does not check quality and says so: on the About page and in a note on every topic page or help-me-choose result that includes a paid resource.
@@ -34,7 +34,9 @@ Do not add anything that needs regular human upkeep without asking the owner fir
 Modelled on indiawijzer.nl. The home page has two big coloured halves, **Online leren** (`/online/`) and **Op locatie leren** (`/op-locatie/`), each with tiles to its topic pages, plus cards: help me choose, start today for free, levels. A topic page has a short intro, its resources (whole row links to the provider) and "search now" buttons. URLs: Dutch at `/<section>/<topic>/`, English at `/en/<section>/<topic>/`. The header has site-wide search over sections, topics and resources (`/assets/search-<lang>.json`).
 
 **Help me choose** (`/kiezen/`, `/en/choose/`) is one sentence with two blanks: "I speak [no / a little / quite a lot of] Dutch and I want to learn [on my phone / by talking with people / in a class or course / to read and write / with my children]." Two taps show up to 6 best matches (exact level first, then free, then official/library/non-profit), plus matching "search now" buttons. A filled blank collapses to the chosen word so the sentence reads as one line; "change" reopens it. Below it, "browse everything" lists all resources grouped by way of learning, with a typo-tolerant search. Without JavaScript only the grouped list shows. Answers and ways are defined in `labels.speak` and `labels.ways` in `src/_data/site.js`; which resources fit which way is in `waysOf()` in `library.js`.
-| Publish on push / weekly link check | `.github/workflows/deploy.yml`, `links.yml` |
+| Publish on push (runs `npm run check` first) / weekly link check | `.github/workflows/deploy.yml`, `links.yml` |
+| Content checks (fields, topics, no inburgering, summary length) | `scripts/check-content.mjs` (`npm run check`) |
+| Instructions for the monthly content update | `content/UPDATING.md` |
 
 - Nunjucks pitfall: `none` is a keyword, so a data key named `none` breaks the template.
 - The publish workflow sets `PATH_PREFIX=/Nederlands-leren/` for the free GitHub Pages address.
@@ -42,5 +44,5 @@ Modelled on indiawijzer.nl. The home page has two big coloured halves, **Online 
 ## Roadmap (from the PRD)
 
 1. Evening 1 (done): site, directory, filters, search, disclaimer, Dutch + English, publishing.
-2. Evenings 2–3: scheduled content generation, guided finder (max 5 questions), more "search now" buttons.
+2. Evenings 2–3: monthly content update (done, see `content/UPDATING.md`), guided finder (done as Help me choose), more "search now" buttons.
 3. Evening 4: Arabic (RTL), Ukrainian, Turkish, Tigrinya; accessibility pass; more Amsterdam listings.

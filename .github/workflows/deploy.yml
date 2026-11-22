@@ -30,6 +30,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # Stops the publish if content/resources.js has mistakes.
+      - run: npm run check
       # The free address is kingqaut.github.io/Nederlands-leren/, so all links
       # need that prefix. Remove this line once a custom domain is connected.
       - run: npm run build
